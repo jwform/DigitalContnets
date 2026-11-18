@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>스마트 바구니 디스플레이 · 최지원 | 2030 MYEONGDONG</title>
+<meta name="description" content="바구니에 걸기만 하면 원하는 코너로 길을 안내하고 직원을 호출하는 디스플레이. 최지원 · 명동시장 4조 개인 제품 페이지">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+:root{--black:#06060a;--white:#F5F5F6;--purple:#7628F5;--purple-hi:#9d5cff;--lime:#C5FF35;--line:rgba(245,245,246,.14);--mute:rgba(245,245,246,.62);
+--f-body:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;--f-display:'Pretendard',sans-serif;--f-mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#06060a}
+body{background:#06060a;color:var(--white);font-family:var(--f-body);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:15px 24px;border-radius:99px;background:var(--lime);color:#111;font:600 14px var(--f-body);border:1px solid var(--lime);transition:.25s}.btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px -14px rgba(197,255,53,.7)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}.btn.ghost:hover{border-color:var(--lime);color:var(--lime)}
+.pm{position:fixed;inset:0;z-index:150;display:none;background:#06060a;opacity:0;transition:opacity .45s ease}
+.pm.open{display:block}.pm.show{opacity:1}
+.pm,.pm *{cursor:auto!important}.pm button,.pm a,.pm [role=button]{cursor:pointer!important}
+.pm{word-break:keep-all}.pm-box{position:absolute;inset:0;overflow:auto;overscroll-behavior:contain;color:var(--white);scroll-behavior:auto}
+.pm-top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,3.4vw,52px);background:linear-gradient(#06060aee,#06060a00);pointer-events:none}
+.pm-top>*{pointer-events:auto}
+.pm-brand span{display:block;font:700 12px var(--f-mono);letter-spacing:.3em}.pm-brand i{font-style:normal;color:var(--lime)}.pm-brand em{display:block;font:10px var(--f-mono);letter-spacing:.2em;color:var(--mute);font-style:normal;margin-top:5px}
+.pm-x{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(17,18,22,.7);color:#fff;font-size:15px;transition:.25s}
+.pm-x:hover{background:var(--lime);color:#111;border-color:var(--lime)}
+.pm-hero{position:relative;min-height:100vh;margin-top:-80px;display:grid;grid-template-columns:minmax(300px,.82fr) 1.3fr;align-items:center;gap:clamp(10px,2vw,40px);padding:96px clamp(18px,3.4vw,56px) 40px;overflow:hidden}
+.pm-ambient{position:absolute;inset:0;background:radial-gradient(60% 60% at 72% 55%,rgba(118,40,245,.38),transparent 70%),radial-gradient(40% 40% at 10% 90%,rgba(197,255,53,.1),transparent 70%);pointer-events:none}
+.pm-copy{position:relative;z-index:2}
+.pm-eye{font:500 11px var(--f-mono);letter-spacing:.22em;color:var(--lime)}
+.pm h2{font-family:var(--f-display);font-weight:900;font-size:clamp(46px,7.6vw,128px);line-height:.92;letter-spacing:-.05em;margin:22px 0 16px}
+.pm h2 em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--purple-hi);background:linear-gradient(90deg,#9d5cff,#c5ff35);-webkit-background-clip:text;background-clip:text}
+.pm-ko{font:500 14px var(--f-mono);letter-spacing:.2em;color:var(--mute)}
+.pm-lead{max-width:430px;font-size:clamp(14px,1.25vw,16.5px);line-height:1.85;color:#dcdbe4;margin:22px 0 28px}.pm-lead b{color:var(--lime);font-weight:500}
+.pm-scroll{display:flex;align-items:center;gap:12px;font:10px var(--f-mono);letter-spacing:.3em;color:var(--mute)}.pm-scroll i{width:56px;height:1px;background:linear-gradient(90deg,var(--lime),transparent);animation:pmSl 2s ease-in-out infinite;transform-origin:left}
+@keyframes pmSl{0%{transform:scaleX(.2)}60%{transform:scaleX(1)}100%{transform:scaleX(.2)}}
+.pm-view{position:relative;z-index:1;height:clamp(420px,80vh,880px);border-radius:28px;border:1px solid rgba(157,92,255,.25);background:radial-gradient(70% 55% at 50% 58%,rgba(118,40,245,.3),transparent 70%),linear-gradient(180deg,rgba(20,20,34,.7),rgba(8,8,14,.6));overflow:hidden;box-shadow:0 40px 120px -40px rgba(118,40,245,.55)}
+.pm-view::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(157,92,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(157,92,255,.07) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(70% 60% at 50% 55%,#000,transparent 78%);mask-image:radial-gradient(70% 60% at 50% 55%,#000,transparent 78%);pointer-events:none}
+.pm-view .pv{position:absolute;inset:0}
+.pm-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.0}
+.pm-c{position:absolute;width:18px;height:18px;border:1px solid rgba(197,255,53,.7);z-index:3;pointer-events:none}.pm-c.tl{left:16px;top:16px;border-right:0;border-bottom:0}.pm-c.tr{right:16px;top:16px;border-left:0;border-bottom:0}.pm-c.bl{left:16px;bottom:16px;border-right:0;border-top:0}.pm-c.br{right:16px;bottom:16px;border-left:0;border-top:0}
+.pm-dim{position:absolute;z-index:3;font:500 10px var(--f-mono);letter-spacing:.14em;color:var(--lime);background:rgba(10,10,14,.6);border:1px solid rgba(197,255,53,.35);border-radius:99px;padding:4px 9px;pointer-events:none}.pm-dim.a{right:42px;top:16px}.pm-dim.b{right:42px;top:46px}
+.pm-chips{position:absolute;left:50%;bottom:48px;transform:translateX(-50%);display:flex;gap:6px;z-index:3}
+.pm-chips button{font:500 11px var(--f-mono);color:#fff;background:rgba(30,30,40,.7);border:1px solid rgba(255,255,255,.18);border-radius:99px;padding:7px 13px;transition:.25s;backdrop-filter:blur(6px)}
+.pm-chips button:hover,.pm-chips button.on{background:var(--lime);color:#111;border-color:var(--lime)}
+.pm-hint{position:absolute;left:0;right:0;bottom:0;padding:12px 16px;text-align:center;font:10.5px var(--f-mono);color:var(--mute);letter-spacing:.06em}.pm-hint b{color:var(--lime);font-weight:500}
+.hs{display:block;width:0;height:0;padding:0;border:0;background:none;position:absolute;pointer-events:none}
+.hs::before{content:'';position:absolute;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;border:2px solid var(--lime);box-shadow:0 0 0 4px rgba(197,255,53,.18);opacity:0;transform:scale(.6);transition:.2s}
+.hs::after{content:'';position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:var(--lime);opacity:.55;box-shadow:0 0 10px var(--lime);animation:hsP 2s ease-in-out infinite}
+@keyframes hsP{50%{opacity:1;transform:scale(1.5)}}
+.hs span{position:absolute;left:22px;top:0;transform:translateY(-50%);white-space:nowrap;font:500 12px var(--f-body);background:rgba(17,18,22,.94);border:1px solid var(--line);color:#fff;padding:6px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:.2s}
+.hs.on::before{opacity:1;transform:scale(1)}.hs.on span{opacity:1}
+.pm-band{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(118,40,245,.1),rgba(197,255,53,.04))}
+.pm-band>div{padding:clamp(18px,3vw,38px) clamp(14px,2.6vw,40px);border-right:1px solid var(--line)}.pm-band>div:last-child{border:0}
+.pm-band b{display:block;font:800 clamp(22px,3.2vw,46px)/1 var(--f-display);letter-spacing:-.04em}.pm-band small{font-size:.4em;margin-left:4px;color:var(--lime)}
+.pm-band span{display:block;margin-top:10px;font:10px var(--f-mono);letter-spacing:.18em;color:var(--mute)}
+.pm-sec{padding:clamp(60px,9vw,130px) clamp(18px,5vw,90px) 0;max-width:1400px;margin:0 auto}
+.pm-h{margin-bottom:clamp(34px,5vw,70px)}.pm-h span{font:500 11px var(--f-mono);letter-spacing:.26em;color:var(--lime)}
+.pm-h h3{font-family:var(--f-display);font-weight:800;font-size:clamp(28px,4.6vw,68px);line-height:1.04;letter-spacing:-.045em;margin:16px 0 0}
+.pm-row{position:relative;display:grid;grid-template-columns:minmax(80px,.55fr) 1fr 1.05fr;gap:clamp(18px,3vw,56px);align-items:center;padding:clamp(28px,4vw,56px) 0;border-top:1px solid var(--line)}
+.pm-row.rev .pm-txt{order:3}.pm-row.rev .pm-mock{order:2}.pm-row.rev{grid-template-columns:minmax(80px,.55fr) 1.05fr 1fr}
+.pm-num{font:900 clamp(70px,11vw,170px)/.8 var(--f-display);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px rgba(157,92,255,.7)}
+.pm-txt .k{font:500 10.5px var(--f-mono);letter-spacing:.22em;color:var(--lime)}
+.pm-txt h4{font-size:clamp(22px,2.6vw,36px);font-weight:700;letter-spacing:-.03em;margin:12px 0}
+.pm-txt p{font-size:clamp(13.5px,1.15vw,16px);line-height:1.85;color:#cfcdd8;max-width:440px;margin:0}
+.pm-mock{display:grid;place-items:center;min-height:260px;border-radius:24px;border:1px solid rgba(157,92,255,.22);background:radial-gradient(70% 70% at 50% 50%,rgba(118,40,245,.22),rgba(10,10,16,.6));position:relative;overflow:hidden}
+.mk-dial{position:relative;width:240px;height:240px}
+.mk-orbit{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(157,92,255,.4)}
+.mk-orbit b{position:absolute;left:50%;top:50%;font:500 11px var(--f-mono);letter-spacing:.04em;color:#cfcdd8;transform:rotate(var(--a)) translateY(-108px) rotate(calc(var(--a)*-1)) translate(-50%,-50%);white-space:nowrap;padding:5px 9px;border:1px solid var(--line);border-radius:99px;background:rgba(10,10,16,.85);animation:mkHi 6s steps(1) infinite}
+.mk-orbit b:nth-child(1){animation-delay:0s}.mk-orbit b:nth-child(2){animation-delay:1s}.mk-orbit b:nth-child(3){animation-delay:2s}.mk-orbit b:nth-child(4){animation-delay:3s}.mk-orbit b:nth-child(5){animation-delay:4s}.mk-orbit b:nth-child(6){animation-delay:5s}
+@keyframes mkHi{0%{background:var(--lime);color:#111;border-color:var(--lime)}16.6%,100%{background:rgba(10,10,16,.85);color:#cfcdd8;border-color:var(--line)}}
+.mk-knob{position:absolute;left:50%;top:50%;width:92px;height:92px;margin:-46px;border-radius:50%;background:repeating-conic-gradient(#232329 0 6deg,#15151a 6deg 12deg);border:3px solid #7628f5;box-shadow:0 0 30px rgba(118,40,245,.6),inset 0 0 14px #000}
+.mk-pointer{position:absolute;left:50%;top:50%;width:0;height:0;animation:mkRot 6s steps(6) infinite;z-index:2}.mk-pointer::before{content:'';position:absolute;left:-3px;top:-44px;width:6px;height:20px;border-radius:3px;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+@keyframes mkRot{to{transform:rotate(360deg)}}
+.mk-screen{display:flex;align-items:center;gap:22px;width:min(440px,86%);padding:22px 26px;border-radius:16px;background:#050508;border:1px solid #2b2b35;box-shadow:0 0 50px rgba(118,40,245,.3),inset 0 0 30px rgba(118,40,245,.08)}
+.mk-screen small{display:block;font:9.5px var(--f-mono);letter-spacing:.2em;color:var(--mute)}.mk-screen .l b{font:700 30px var(--f-mono);letter-spacing:-.02em}
+.mk-screen .d{width:1px;align-self:stretch;background:#2b2b35}.mk-screen .r{flex:1}.mk-screen svg{width:100%;height:auto;fill:none;stroke:var(--lime);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.mk-screen .p{stroke-dasharray:6 8;animation:mkDash 1.4s linear infinite}@keyframes mkDash{to{stroke-dashoffset:-28}}
+.mk-call{display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center;padding:24px}
+.btnc{position:relative;width:96px;height:96px;display:grid;place-items:center}.btnc b{width:64px;height:64px;border-radius:50%;background:var(--lime);box-shadow:0 0 36px rgba(197,255,53,.7);z-index:2}
+.btnc i{position:absolute;inset:0;border-radius:50%;border:2px solid var(--lime);opacity:0;animation:mkRip 2.4s ease-out infinite}.btnc i:nth-child(2){animation-delay:.8s}.btnc i:nth-child(3){animation-delay:1.6s}
+@keyframes mkRip{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.mk-call .note{padding:16px 20px;border-radius:14px;background:rgba(14,14,20,.92);border:1px solid var(--line);min-width:210px;animation:mkIn 2.4s ease infinite}
+@keyframes mkIn{0%,10%{opacity:0;transform:translateX(14px)}30%,90%{opacity:1;transform:none}100%{opacity:0}}
+.mk-call .note small{font:9.5px var(--f-mono);letter-spacing:.2em;color:var(--lime)}.mk-call .note b{display:block;font-size:15px;margin:6px 0 3px}.mk-call .note span{font-size:12px;color:var(--mute)}
+.pm-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);position:relative;gap:10px}
+.pm-flow::before{content:'';position:absolute;left:5%;right:5%;top:25px;height:1px;background:linear-gradient(90deg,transparent,rgba(157,92,255,.7),var(--lime),transparent)}
+.pm-flow li{position:relative;text-align:center}.pm-flow b{display:grid;place-items:center;width:50px;height:50px;margin:0 auto 16px;border-radius:50%;background:#0b0b10;border:1px solid var(--purple-hi);font:500 13px var(--f-mono);color:var(--lime);box-shadow:0 0 24px rgba(118,40,245,.5)}
+.pm-flow span{font-size:clamp(12.5px,1.1vw,15px);line-height:1.6;color:#dcdbe4}
+.pm-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pm-cards>div{padding:24px 22px;border-radius:20px;background:linear-gradient(180deg,rgba(40,40,56,.55),rgba(14,14,20,.6));border:1px solid var(--line);transition:.4s}.pm-cards>div:hover{transform:translateY(-6px);border-color:rgba(197,255,53,.45);box-shadow:0 24px 60px -30px rgba(118,40,245,.8)}
+.pm-cards k{display:block;font:500 10px var(--f-mono);letter-spacing:.22em;color:var(--lime)}.pm-cards b{display:block;font-size:18px;margin:12px 0 10px;letter-spacing:-.02em}.pm-cards p{margin:0;font-size:13px;line-height:1.75;color:#b9b8c4}
+.pm-cards .sw{display:flex;gap:8px;margin:0 0 12px}.pm-cards .sw i{width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.25)}
+.pm-act{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;padding:clamp(60px,8vw,110px) 20px clamp(60px,8vw,110px)}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+@media(max-width:980px){.pm-hero{grid-template-columns:1fr;padding-top:100px}.pm-view{height:min(62vh,520px)}.pm-band,.pm-cards{grid-template-columns:repeat(2,1fr)}.pm-row,.pm-row.rev{grid-template-columns:1fr}.pm-row.rev .pm-txt,.pm-row.rev .pm-mock{order:0}.pm-num{font-size:80px}.pm-flow{grid-template-columns:1fr;gap:22px}.pm-flow::before{display:none}}
+
+.pm{position:static!important;display:block!important;opacity:1!important;background:#06060a}
+.pm,.pm *{cursor:auto!important}.pm button,.pm a{cursor:pointer!important}
+.pm-box{position:static!important;overflow:visible!important}
+.pm-top{position:fixed;left:0;right:0;top:0;background:linear-gradient(#06060acc,#06060a00)}
+.pm-logo img{height:50px;width:auto;display:block}
+.pm-nav{display:flex;align-items:center;gap:10px}
+.pm-home{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(17,18,22,.7);display:grid;place-items:center;transition:.25s}.pm-home:hover{background:var(--lime);color:#111;border-color:var(--lime)}
+.pm-video{border-radius:24px;overflow:hidden;border:1px solid rgba(157,92,255,.25);background:#000;box-shadow:0 40px 120px -50px rgba(118,40,245,.6)}.pm-video video{display:block;width:100%;max-height:78vh}
+.pm-hero{margin-top:0}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:26px clamp(18px,5vw,64px);border-top:1px solid var(--line);font:11px var(--f-mono);color:var(--mute);letter-spacing:.06em}
+</style>
+</head>
+<body>
+<div class="pm pg" id="pm">
+  <div class="pm-box" id="pmBox">
+    <div class="pm-top"><a class="pm-logo" id="teamLink" href="../index.html" aria-label="지도로 돌아가기" title="지도로 돌아가기"><img src="assets/logo.jpg" alt="2030 MYEONGDONG"></a><div class="pm-nav"><a class="pm-home" id="homeLink" href="../../index.html" aria-label="지도로 돌아가기" title="지도로 돌아가기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/></svg></a></div></div>
+    <section class="pm-hero">
+      <div class="pm-ambient"></div>
+      <div class="pm-copy">
+        <div class="pm-eye">03 / 03 · 화장품 매장 · 최지원</div>
+        <h2 id="pmTitle">SMART<br>BASKET<br><em>DISPLAY</em></h2>
+        <div class="pm-ko">스마트 바구니 디스플레이</div>
+        <p class="pm-lead">바구니 입구 테두리에 거는 <b>가로형 디스플레이</b>. 바구니는 그대로 두고, 이 디스플레이 하나로 코너 선택 · 경로 안내 · 직원 호출을 더합니다. 말이 통하지 않는 외국인 방문객도 아이콘과 화살표만으로 사용할 수 있습니다.</p>
+        <div class="pm-scroll">SCROLL <i></i></div>
+      </div>
+      <div class="pm-view" id="pmView">
+        <img class="pm-poster" id="pmPoster" alt="">
+        <i class="pm-c tl"></i><i class="pm-c tr"></i><i class="pm-c bl"></i><i class="pm-c br"></i>
+        <span class="pm-dim a">280 mm</span><span class="pm-dim b">90 mm</span>
+        <div class="pm-chips" id="pmChips" role="group" aria-label="보기 전환"><button class="on" data-v="quarter" type="button">Quarter</button><button data-v="top" type="button">Top</button><button data-v="front" type="button">Front</button><button data-v="side" type="button">Side</button><button data-v="rear" type="button">Rear</button></div>
+        <div class="pm-hint"><b>360°</b> 드래그 회전 · 휠 확대 · 제품에 마우스를 올리면 기능 표시</div>
+      </div>
+    </section>
+
+    <div class="pm-band"><div><b>280×90×61</b><span>SIZE · mm</span></div><div><b>03</b><span>CORE FUNCTIONS</span></div><div><b>100<small>mm</small></b><span>CENTER HOOK</span></div><div><b>01</b><span>CAMERA · HOOK PLATE</span></div></div>
+
+    <section class="pm-sec rv">
+      <div class="pm-h"><span>HOW IT WORKS</span><h3>세 가지 기능,<br>하나의 디스플레이</h3></div>
+
+      <article class="pm-row rv">
+        <div class="pm-num">01</div>
+        <div class="pm-txt"><div class="k">FUNCTION 01</div><h4>다이얼 코너 선택</h4><p>다이얼을 돌려 스킨케어·메이크업·헤어케어·바디케어·향수·식품 중 가고 싶은 코너를 고릅니다. 글자를 읽지 않아도 아이콘으로 고를 수 있습니다.</p></div>
+        <div class="pm-mock"><div class="mk-dial"><div class="mk-orbit"><b style="--a:0deg">스킨</b><b style="--a:60deg">메이크업</b><b style="--a:120deg">헤어</b><b style="--a:180deg">바디</b><b style="--a:240deg">향수</b><b style="--a:300deg">식품</b></div><div class="mk-pointer"></div><div class="mk-knob"></div></div></div>
+      </article>
+
+      <article class="pm-row rev rv">
+        <div class="pm-num">02</div>
+        <div class="pm-txt"><div class="k">FUNCTION 02</div><h4>디스플레이 경로 안내</h4><p>고른 코너의 경로와 현재 바구니 금액을 아이콘과 화살표로 보여줍니다. 매장 안에서 길을 잃지 않고 바로 이동할 수 있습니다.</p></div>
+        <div class="pm-mock"><div class="mk-screen"><div class="l"><small>BASKET</small><b>48,000</b></div><div class="d"></div><div class="r"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="p" d="M8 44 H62 V16 H108"/><path d="M98 8 L110 16 L98 24" /></svg><small>SKINCARE · 24 m</small></div></div></div>
+      </article>
+
+      <article class="pm-row rv">
+        <div class="pm-num">03</div>
+        <div class="pm-txt"><div class="k">FUNCTION 03</div><h4>호출 버튼 직원 호출</h4><p>라임색 호출 버튼을 누르면 가까운 직원에게 위치가 전달됩니다. 직원은 알림을 확인하고 바로 응대합니다.</p></div>
+        <div class="pm-mock"><div class="mk-call"><div class="btnc"><i></i><i></i><i></i><b></b></div><div class="note"><small>CALL · 방금 전</small><b>스킨케어 코너 · A-12</b><span>직원이 확인했습니다</span></div></div></div>
+      </article>
+    </section>
+
+    <section class="pm-sec rv">
+      <div class="pm-h"><span>IN THE STORE</span><h3>방문객에서 직원까지,<br>한 번의 흐름</h3></div>
+      <ol class="pm-flow"><li><b>01</b><span>다이얼로<br>코너 선택</span></li><li><b>02</b><span>화면의 화살표로<br>길 찾기</span></li><li><b>03</b><span>필요하면<br>호출 버튼</span></li><li><b>04</b><span>직원이<br>알림 확인</span></li><li><b>05</b><span>현장에서<br>바로 응대</span></li></ol>
+    </section>
+
+    <section class="pm-sec rv">
+      <div class="pm-h"><span>INTERACTION</span><h3>실제로 쓰는 모습</h3></div>
+      <div class="pm-video"><video controls muted loop playsinline preload="metadata" src="videos/VIDEO-01_interaction.mp4"></video></div>
+    </section>
+
+    <section class="pm-sec rv">
+      <div class="pm-h"><span>DETAIL</span><h3>작고 단단하게,<br>어디에나 걸리도록</h3></div>
+      <div class="pm-cards">
+        <div><k>MOUNT</k><b>후크로 거는 방식</b><p>가운데 폭 100mm 후크로 바구니 입구 테두리에 걸어 씁니다. 바구니를 바꾸지 않아도 됩니다.</p></div>
+        <div><k>CAMERA</k><b>인식 카메라</b><p>후크 판 안쪽, 바구니 안을 향해 달려 있습니다. 바구니 속 상품을 인식해 금액을 보여줍니다.</p></div>
+        <div><k>SIZE</k><b>280 × 90 × 61 mm</b><p>다이얼과 후크를 포함한 크기입니다. 한 손으로 쉽게 떼어 다른 바구니에 옮겨 걸 수 있습니다.</p></div>
+        <div><k>COLOR</k><b>Black · Violet · Lime</b><div class="sw"><i style="background:#111216"></i><i style="background:#303137"></i><i style="background:#7628f5"></i><i style="background:#c5ff35"></i></div><p>블랙 · 그레이 본체, 바이올렛 링, 라임 호출 버튼.</p></div>
+      </div>
+    </section>
+
+    <div class="pm-act">
+      <a class="btn" id="teamLink2" href="../index.html?return=shopping#explore"><span>← 다시 지도로 돌아가기</span><span>MAP</span></a>
+      <a class="btn ghost" href="models/3D-01_product.glb" download><span>GLB 모델 내려받기 ↓</span></a>
+    </div>
+    <footer><span>2030 MYEONGDONG · TEAM 04 · PRODUCT 01</span><span>© 2026 최지원 · 디지털콘텐츠디자인</span></footer>
+  </div>
+</div>
+<script>
+const TEAM_URL='../index.html?return=shopping#explore', COURSE_URL='../index.html?return=shopping#explore';   // 로고 → 조 소개 페이지 / 홈 → 전체 프로젝트
+['teamLink','teamLink2'].forEach(i=>document.getElementById(i).href=TEAM_URL);
+['homeLink'].forEach(i=>document.getElementById(i).href=COURSE_URL);
+let PV=null;
+const box=document.createElement('div');box.className='pv';
+const view=document.getElementById('pmView');view.insertBefore(box,document.getElementById('pmPoster').nextSibling);
+[['0.107 0.0285 0','0 1 0','다이얼 · 코너 선택'],['-0.115 0.0135 0','0 1 0','호출 버튼 · 직원 호출'],['-0.04 0.0135 0','0 1 0','디스플레이 · 경로 안내'],['0 -0.0325 -0.025','0 -1 0','인식 카메라 · 바구니 안쪽']].forEach(([p,n,t])=>{
+  const b=document.createElement('button');b.className='hs';b.type='button';b.tabIndex=-1;b.dataset.position=p;b.dataset.normal=n;b.innerHTML='<span>'+t+'</span>';box.appendChild(b)});
+document.getElementById('pmChips').addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b||!PV)return;document.querySelectorAll('#pmChips button').forEach(x=>x.classList.toggle('on',x===b));PV.setView(b.dataset.v)});
+function ld(src){return new Promise((r,j)=>{const s=document.createElement('script');s.src=src;s.onload=r;s.onerror=()=>j(new Error(src));document.head.appendChild(s)})}
+ld('lib/three.bundle.js').then(()=>ld('lib/viewer.js')).then(()=>{
+  PV=ProductViewer(box,{url:'models/3D-01_product.glb',fallbackScript:'models/3D-01_product.glb.js',alt:'스마트 바구니 디스플레이 3D 모델',autoDelay:2500,onLoad:()=>{document.getElementById('pmPoster').style.display='none'}});
+}).catch(e=>console.error('3D 뷰어를 불러오지 못했습니다',e));
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

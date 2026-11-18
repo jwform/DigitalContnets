@@ -1,0 +1,2113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BRIDGE — Smart Communication Gate</title>
+<meta name="description" content="2030 MYEONGDONG · BRIDGE, a gate-type communication device where tourists and vendors talk face to face. TECHNOLOGY CONNECTS. PEOPLE DECIDE.">
+<meta name="theme-color" content="#111216">
+<link rel="icon" type="image/png" href="assets/img/logo-symbol.png">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<canvas id="pxg" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<div id="loader" role="status" aria-live="polite">
+  <div class="ld-in"><span class="ld-n" id="ldn">0</span><span class="ld-t">BRIDGE · LOADING</span><i class="ld-bar"><b id="ldb"></b></i></div>
+</div>
+
+<header class="hud">
+  <a class="brand" href="#act1" aria-label="BRIDGE — back to start"><img class="brand-sym" src="assets/img/logo-symbol.png" alt="" draggable="false">BRIDGE</a>
+  <div class="hud-mid"><span id="hudAct">ACT 01</span><b id="hudName">INTRO</b></div>
+  <a class="hud-link" href="#act6">SYSTEM ↓</a>
+</header>
+<nav class="dots" id="dots" aria-label="Experience chapters"></nav>
+<div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+<div class="cur" id="cur" aria-hidden="true"></div>
+<div class="goo" id="goo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="gooF"><feGaussianBlur in="SourceGraphic" stdDeviation="7"/><feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8"/></filter></svg>
+
+<main id="main">
+
+<!-- ================= ACT 01 · INTRO ================= -->
+<section class="act pinned" id="act1" data-scene="a1" data-ui="1" data-name="INTRO" style="--h:900">
+  <div class="stage">
+    <h1 class="slam" id="kt1" data-text="BRIDGE" data-fit=".9" aria-label="BRIDGE">BRIDGE</h1>
+    <img class="intro-logo" id="introLogo" src="assets/img/logo-2030.png" alt="2030 MYEONGDONG" draggable="false">
+    <p class="sub1" id="sub1">SMART COMMUNICATION GATE</p>
+    <div class="glass c-left" data-r="0.14,0.36" data-fx="up">
+      <p class="eb">2030 · MYEONGDONG</p>
+      <p class="words lg">두 사람, <b class="kw pu">두 개의 언어</b>,<br>하나의 <b class="kw">포장마차</b>.</p>
+    </div>
+    <p class="giant" data-r="0.38,0.56" data-fx="slam" data-fit=".86">ENTER<br>THE GATE.</p>
+    <div class="re" data-r="0.8,1.04" data-fx="up">
+      <p class="eb">SMART COMMUNICATION GATE</p>
+      <p class="slogan words">TECHNOLOGY CONNECTS.<br><em>PEOPLE DECIDE.</em></p>
+    </div>
+    <p class="cue" id="cue" data-r="-0.1,0.06"><i></i>SCROLL</p>
+  </div>
+</section>
+
+<!-- ================= ACT 02 · PROBLEM (scene) ================= -->
+<section class="act pinned" id="act2" data-scene="a2" data-ui="2" data-name="PROBLEM" style="--h:1250">
+  <div class="stage">
+    <div class="a2-floor"></div>
+    <p class="chap" data-r="0,0.12" data-fx="up"><b>SCENE 01</b> 명동의 포장마차, 마주 선 두 사람</p>
+    <div class="figs" id="figs" data-r="-1,0.93" data-fx="none">
+      <figure class="fig tourist"><img src="assets/people/B_side.png" alt="3D mannequin silhouette of a foreign tourist" draggable="false"><figcaption>TOURIST</figcaption></figure>
+      <figure class="fig vendor"><img src="assets/people/A_side.png" alt="3D mannequin silhouette of a street-food vendor" draggable="false"><figcaption>VENDOR</figcaption></figure>
+    </div>
+    <div class="bubble v v1" data-r="0.08,0.6" data-fx="pop"><i>VENDOR</i>몇 개 드릴까요?</div>
+    <div class="bubble t t1" data-r="0.17,0.6" data-fx="pop"><i>TOURIST</i>…What is this?</div>
+    <div class="bubble v v2" data-r="0.26,0.6" data-fx="pop"><i>VENDOR</i>맵기는 어떻게 할까요?</div>
+    <div class="bubble t t2" data-r="0.35,0.6" data-fx="pop"><i>TOURIST</i>Sorry… English, please?</div>
+    <div class="err" data-r="0.46,0.6" data-fx="pop">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 60 56H4Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M32 24v16" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="48" r="3" fill="currentColor"/></svg>
+      <b>COMMUNICATION ERROR</b><span>소통 오류 — 말은 오갔지만, 뜻은 닿지 않았다</span>
+    </div>
+    <aside class="pcard left" data-r="0.62,0.77" data-fx="card">
+      <p class="eb">PERSONA 01</p><h3>VENDOR<small>상인</small></h3>
+      <p class="pl">손은 바쁘고 줄은 길다. 주문은 정확하고 빠르게 받아야 한다.</p>
+      <ul><li data-r="0.64,0.77" data-fx="up"><b>QUANTITY</b><span>몇 개 드릴까요?</span></li><li data-r="0.675,0.77" data-fx="up"><b>SPICINESS</b><span>맵기는 어떻게 할까요?</span></li><li data-r="0.71,0.77" data-fx="up"><b>OPTIONS</b><span>소스, 토핑은요?</span></li></ul>
+    </aside>
+    <aside class="pcard right" data-r="0.79,0.93" data-fx="card">
+      <p class="eb">PERSONA 02</p><h3>TOURIST<small>관광객</small></h3>
+      <p class="pl">메뉴도 말도 낯설지만, 이 거리의 맛을 직접 경험하고 싶다.</p>
+      <ul><li data-r="0.81,0.93" data-fx="up"><b>“WHAT IS THIS?”</b><span>메뉴가 무엇인지 알 수 없다</span></li><li data-r="0.845,0.93" data-fx="up"><b>LANGUAGE BARRIER</b><span>서로 공유하는 언어가 없다</span></li><li data-r="0.88,0.93" data-fx="up"><b>NOISE</b><span>시끄러운 거리, 들리지 않는 말</span></li></ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= ACT 02 · PROBLEM (definition) ================= -->
+<section class="act pinned" id="act2b" data-scene="a2b" data-ui="2" data-name="PROBLEM" style="--h:1150">
+  <div class="stage">
+    <div class="problem" data-r="0.0,0.23" data-fx="none">
+      <div class="shards" id="shards" aria-hidden="true"></div>
+      <p class="eb">PROBLEM DEFINITION</p>
+      <h2 class="kt-prob" id="kt2" data-text="WORDS ARE SPOKEN.|MEANING IS LOST." data-fit=".9" aria-label="Words are spoken. Meaning is lost.">WORDS ARE SPOKEN. MEANING IS LOST.</h2>
+    </div>
+    <ol class="mini" id="mini" aria-hidden="true" data-r="0.22,0.8" data-fx="none"><li>01</li><li>02</li><li>03</li></ol>
+    <article class="pcase" data-r="0.24,0.42" data-fx="card2">
+      <span class="num">01</span><h3>LANGUAGE<br>BARRIER</h3><p class="words lg">같은 말을 하지 않는다.<br>단어가 달라서, <b class="kw">뜻이 건너가지 못한다</b>.</p>
+      <svg class="ico" viewBox="0 0 120 80" aria-hidden="true"><path d="M8 8h56v36H30l-14 14V44H8Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M56 30h56v36H98l-14 14V66H56Z" fill="none" stroke="currentColor" stroke-width="3" opacity=".6"/><path d="M44 54 76 22" stroke="var(--li)" stroke-width="4" stroke-linecap="round"/></svg>
+    </article>
+    <article class="pcase" data-r="0.44,0.62" data-fx="card2">
+      <span class="num">02</span><h3>CONTEXT<br>GAP</h3><p class="words lg">같은 상황을 읽지 않는다.<br>맵기, 수량, 옵션 — <b class="kw">맥락이 어긋난다</b>.</p>
+      <svg class="ico" viewBox="0 0 120 80" aria-hidden="true"><rect x="8" y="14" width="40" height="52" fill="none" stroke="currentColor" stroke-width="3"/><rect x="72" y="14" width="40" height="52" fill="none" stroke="currentColor" stroke-width="3" opacity=".6"/><path d="M52 40h16" stroke="var(--li)" stroke-width="4" stroke-dasharray="3 6" stroke-linecap="round"/></svg>
+    </article>
+    <article class="pcase" data-r="0.64,0.8" data-fx="card2">
+      <span class="num">03</span><h3>BROKEN<br>INTERACTION</h3><p class="words lg"><b class="kw">대화가 끊어진다</b>.<br>서로를 보지 못한 채, 주문은 멈춘다.</p>
+      <svg class="ico" viewBox="0 0 120 80" aria-hidden="true"><circle cx="24" cy="40" r="14" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="96" cy="40" r="14" fill="none" stroke="currentColor" stroke-width="3" opacity=".6"/><path d="M40 40h14M66 40h14" stroke="var(--li)" stroke-width="4" stroke-linecap="round"/><path d="m56 30 8 20" stroke="var(--li)" stroke-width="4" stroke-linecap="round"/></svg>
+    </article>
+    <div class="insight" data-r="0.83,1.05" data-fx="none">
+      <div class="rv" id="insRv"><img class="dim" src="assets/img/render-3.webp" alt="" aria-hidden="true"><img class="lit" src="assets/img/render-3.webp" alt="" aria-hidden="true"><div class="rv-ring"></div></div>
+      <div class="insight-in">
+        <p class="eb">INSIGHT</p>
+        <h2 class="hd xl" data-fx="slam">EYE<br>CONTACT</h2>
+        <p class="words lg">번역보다 먼저, 두 사람이 <b class="kw">서로를 마주 보는 일</b>.<br>기술은 그 사이를 이어줄 뿐 — <b class="kw pu">결정은 사람</b>이 합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACT 03 · 360 viewer ================= -->
+<section class="act pinned" id="act3" data-scene="a3b" data-ui="3" data-name="PRODUCT" style="--h:520">
+  <div class="stage">
+    <div class="v-copy">
+      <p class="eb">360° VIEWER</p>
+      <h2 class="hd md">FIVE POINTS<br>OF CONTACT</h2>
+      <ol class="vlist" id="vlist"></ol>
+      <div class="chips" role="group" aria-label="View controls">
+        <button class="chip on" data-view="0">FRONT</button><button class="chip" data-view="180">BACK</button><button class="chip" id="autoRot" aria-pressed="false">AUTO ROTATE</button><button class="chip" id="vReset">RESET VIEW</button>
+      </div>
+    </div>
+    <div class="vzone" id="vzone" tabindex="0" aria-label="BRIDGE 3D viewer. Drag or use left and right arrow keys to rotate."><span class="vhint"><i></i>DRAG TO ROTATE · CLICK A DOT</span></div>
+    <div id="hs" class="hs-layer"></div>
+    <aside class="panel" id="hsPanel" aria-live="polite">
+      <p class="eb" id="hsNum">01 / 05</p>
+      <h3 id="hsTitle">CAMERA SENSOR</h3>
+      <p class="pb" id="hsBody"></p>
+      <ul class="pt" id="hsPts"></ul>
+      <div class="prow"><span class="tagio" id="hsIO">INPUT</span><button class="chip" id="hsNext">NEXT ▸</button></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= ACT 04 · PUI SIMULATOR ================= -->
+<section class="act pinned" id="act4" data-scene="a4" data-ui="4" data-name="PUI SIMULATOR" style="--h:420">
+  <div class="stage">
+    <div class="sim-head">
+      <p class="eb">ACT 04 — PUI SIMULATOR</p>
+      <h2 class="hd md">SILENT.<br>CONNECTING.<br>READY.</h2>
+    </div>
+    <div class="sim-bar">
+      <div class="sim-desc glass" aria-live="polite"><p class="eb" id="simK">STATE 01</p><p id="simT"></p><ul id="simL"></ul></div>
+      <div class="states" role="tablist" aria-label="Interface state">
+        <button role="tab" class="st on" data-st="0" aria-selected="true"><i class="d w"></i><b>SILENT</b><span>대기 · 흰색</span></button>
+        <button role="tab" class="st" data-st="1" aria-selected="false"><i class="d p"></i><b>CONNECTING</b><span>연결 중 · 보라</span></button>
+        <button role="tab" class="st" data-st="2" aria-selected="false"><i class="d l"></i><b>READY</b><span>준비 완료 · 라임</span></button>
+      </div>
+      <div class="chips"><button class="chip on" data-side="0">FRONT</button><button class="chip" data-side="180">BACK</button></div>
+    </div>
+    <p class="food-note" id="foodNote">ORDER READY — 음식이 게이트를 지나 건네집니다</p>
+  </div>
+</section>
+
+<!-- ================= ACT 05 · BE THE TOURIST ================= -->
+<section class="act pinned" id="act5" data-scene="a5" data-ui="5" data-name="BE THE TOURIST" style="--h:1600">
+  <div class="stage sc-stage">
+    <div class="sc-view" id="scView">
+      <img class="sc-fb" id="scFb" alt="" src="assets/img/scenario-1.webp">
+      <div class="sc-fx" aria-hidden="true"></div>
+      <button class="sc-press" id="scPress" aria-label="Press the center button of BRIDGE"><i></i><span>PRESS</span></button>
+      <div class="sc-disp" id="scDisp" aria-live="polite"></div>
+    </div>
+    <header class="sc-head"><p class="eb">ACT 05 — BE THE TOURIST</p><h2 class="hd">SCROLL,<br>AND WALK IN.</h2></header>
+    <div class="sc-cap" id="scCap" aria-live="polite">
+      <p class="sc-no"><i id="scNo">01</i><b id="scEn">DISCOVERY</b></p>
+      <h3 id="scKo">발견</h3><p class="sc-core" id="scCore"></p><p class="sc-body" id="scBody"></p>
+      <p class="sc-hint" id="scHint">SCROLL ↓</p>
+    </div>
+    <ol class="sc-rail" id="scRail" aria-label="Scenario steps"></ol>
+  </div>
+</section>
+
+<!-- ================= ACT 06 · SYSTEM ================= -->
+<section class="act pinned" id="act6" data-scene="a6" data-ui="6" data-name="SYSTEM" style="--h:1800">
+  <div class="stage">
+    <ol class="pipe" id="pipe" data-r="0.1,0.8" data-fx="none" aria-label="INPUT to MCU AI to RESPONSE">
+      <li><i>01</i>INPUT</li><li class="ar" aria-hidden="true">→</li><li><i>02</i>MCU AI</li><li class="ar" aria-hidden="true">→</li><li><i>03</i>RESPONSE</li>
+    </ol>
+    <div class="slide intro6" data-r="-0.1,0.1" data-fx="none">
+      <p class="eb">ACT 06 — SYSTEM</p>
+      <h2 class="hd xl" data-fx="slam">HOW<br>BRIDGE<br>THINKS</h2>
+      <p class="words lg">사람의 행동이 <b class="kw">들어오고</b>, 의도를 <b class="kw pu">읽고</b>,<br>가장 알맞은 방식으로 <b class="kw">돌려줍니다</b>.</p>
+    </div>
+    <div class="slide sys" data-r="0.1,0.84" data-fx="none">
+      <div class="sys-cap"><p class="eb" id="sysK">01 · INPUT</p><h2 id="sysT">사람의 행동이 들어오는 곳</h2><p id="sysD">버튼, 카메라, 마이크, 그리고 두 사람의 목소리.</p></div>
+      <div class="sysmap" id="sysmap">
+        <svg class="sys-lines" id="sysLines" aria-hidden="true"></svg>
+        <div class="sys-col in"><div class="nd" data-r="0.12,0.84" data-fx="snapL"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="currentColor"/></svg><b>PHYSICAL BUTTON</b><span>사람이 직접 누르는 단 하나의 조작</span></div><div class="nd" data-r="0.16,0.84" data-fx="snapL"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="27" cy="21" r="1.8" fill="currentColor"/></svg><b>CAMERA</b><span>다가옴과 마주 봄을 읽는 눈</span></div><div class="nd" data-r="0.20,0.84" data-fx="snapL"><svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="22" rx="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M10 24a14 14 0 0 0 28 0M24 38v6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><b>MICROPHONE</b><span>거리의 소음 속 목소리</span></div><div class="nd" data-r="0.24,0.84" data-fx="snapL"><svg viewBox="0 0 48 48"><path d="M6 24h4M14 16v16M22 8v32M30 14v20M38 19v10M44 24h-2" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><b>USER SPEECH</b><span>상인과 관광객, 각자의 말</span></div></div>
+        <div class="mcu" id="mcu" data-r="0.30,0.84" data-fx="pop"><b>MCU AI<small>AI는 돕고, 결정은 사람이</small></b><div class="mod" data-r="0.36,0.84" data-fx="snapL"><em>A</em><b>CONTEXT AWARENESS</b><span>지금 어떤 상황인지 이해</span></div><div class="mod" data-r="0.41,0.84" data-fx="snapR"><em>B</em><b>LANGUAGE MEDIATION</b><span>두 언어 사이를 중재</span></div><div class="mod" data-r="0.46,0.84" data-fx="snapL"><em>C</em><b>ADAPTIVE RESPONSE</b><span>상황에 맞춰 알맞게 응답</span></div><div class="mod" data-r="0.51,0.84" data-fx="snapR"><em>D</em><b>REAL-TIME CONNECTION</b><span>지연 없이 이어주기</span></div><div class="mod hl" data-r="0.56,0.84" data-fx="snapL"><em>E</em><b>HUMAN CONTROL</b><span>마지막 결정은 사람이</span></div></div>
+        <div class="sys-col out"><div class="nd" data-r="0.67,0.84" data-fx="snapR"><svg viewBox="0 0 48 48"><rect x="4" y="12" width="40" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="3"/><path d="M12 24h12M12 29h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><b>DISPLAY</b><span>번역 · 요청 · 완료 정보를 양면에</span></div><div class="nd" data-r="0.71,0.84" data-fx="snapR"><svg viewBox="0 0 48 48"><path d="M8 20h8l10-8v24l-10-8H8Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M33 17a10 10 0 0 1 0 14M38 12a17 17 0 0 1 0 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><b>SPEAKER</b><span>알맞은 언어의 소리로</span></div><div class="nd" data-r="0.75,0.84" data-fx="snapR"><svg viewBox="0 0 48 48"><path d="M6 14h36" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><rect x="6" y="20" width="36" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="3"/></svg><b>TOP STATUS LIGHT</b><span>흰색 · 보라 · 라임, 말 없는 상태 표시</span></div></div>
+      </div>
+    </div>
+    <div class="slide anat" data-r="0.84,1.05" data-fx="none">
+      <div class="a-l">
+        <p class="eb">STRUCTURE</p>
+        <h2 class="hd md2">FIVE<br>INTERACTION<br>POINTS</h2>
+        <ol class="legend" id="legend"></ol>
+      </div>
+      <div class="a-r"><div class="a-box"><div class="a-in" id="aIn"><img src="assets/img/render-4.webp" alt="BRIDGE close-up with five interaction points marked"></div></div><p class="a-cap" id="aCap"></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACT 06 · materials ================= -->
+<section class="act pinned" id="act6b" data-scene="a6b" data-ui="6" data-name="SYSTEM" style="--h:300">
+  <div class="stage">
+    <div class="slide spec">
+      <div class="sp-l">
+        <p class="eb">MATERIAL · FINISH · SIZE</p><h2 class="hd md2">BUILT TO<br>BE QUIET.</h2>
+        <dl class="dims"><div><dt>SIZE</dt><dd>600 × 500 mm</dd></div><div><dt>THICKNESS</dt><dd>60 mm</dd></div><div><dt>FORM</dt><dd>Horizontal top frame · slanted legs · open center</dd></div></dl>
+        <p class="note">치수는 디자이너 제공 값입니다.</p>
+      </div>
+      <div class="sp-r">
+        <div class="acc" id="acc"><div class="acc-i open"><button class="acc-h" aria-expanded="true"><b>Button</b><span>FUSION 360 · Steel — satin</span><i></i></button><div class="acc-b"><div><p><small>INTENDED FINISH</small>Anodized aluminium, satin dark silver / gunmetal</p></div></div></div><div class="acc-i"><button class="acc-h" aria-expanded="false"><b>Camera · Display</b><span>FUSION 360 · Paint — glossy enamel (black)</span><i></i></button><div class="acc-b"><div><p><small>INTENDED FINISH</small>Black tempered glass / glossy black panel, deep black</p></div></div></div><div class="acc-i"><button class="acc-h" aria-expanded="false"><b>Light</b><span>FUSION 360 · Paint — glossy enamel (green)</span><i></i></button><div class="acc-b"><div><p><small>INTENDED FINISH</small>Translucent PC diffuser + internal RGB LED (lime / purple / white), indirect line, no exposed LED</p></div></div></div><div class="acc-i"><button class="acc-h" aria-expanded="false"><b>Frame</b><span>FUSION 360 · Lead — satin</span><i></i></button><div class="acc-b"><div><p><small>INTENDED FINISH</small>Powder-coated aluminium or steel, dark charcoal, matte / satin</p></div></div></div><div class="acc-i"><button class="acc-h" aria-expanded="false"><b>Center panel</b><span>FUSION 360 · Lead — satin</span><i></i></button><div class="acc-b"><div><p><small>INTENDED FINISH</small>Matte PC or painted aluminium, dark gray</p></div></div></div></div>
+        <p class="note">Fusion 360에서는 실제 소재를 구현할 수 없어 임시 재질을 적용했고, 최종 렌더링은 희망 소재로 표현했습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACT 07 · OUTRO ================= -->
+<section class="act pinned" id="act7" data-scene="a7" data-ui="7" data-name="OUTRO" style="--h:1050">
+  <div class="stage">
+    <video id="outVid" class="outvid" muted playsinline preload="none" poster="assets/video/myeongdong-zoomout-poster.webp"><source src="assets/video/myeongdong-zoomout.mp4" type="video/mp4"></video>
+    <div class="outshade" id="outShade"></div>
+    <p class="giant" data-r="0.07,0.3" data-fx="slam" data-fit=".86">STEP BACK<br>THROUGH.</p>
+    <div class="finale" aria-label="Technology connects. People decide.">
+      <p class="fin" data-r="0.36,0.66" data-fx="slam" data-fit=".92">TECHNOLOGY</p>
+      <p class="fin f2" data-r="0.44,0.66" data-fx="slam" data-fit=".92">CONNECTS.</p>
+      <p class="fin lime" data-r="0.66,0.91" data-fx="slam" data-fit=".92">PEOPLE</p>
+      <p class="fin f2 lime" data-r="0.72,0.91" data-fx="slam" data-fit=".92">DECIDE.</p>
+    </div>
+    <div class="endcard" id="endcard" data-r="0.91,1.12" data-fx="up">
+      <p class="eb">FACE TO FACE, CONNECTED.</p>
+      <p class="end-b" data-fit=".8">BRIDGE</p>
+      <a class="end-link" id="teamLink" href="../index.html?return=street#explore"><img class="end-logo" src="assets/img/logo-2030.png" alt="2030 MYEONGDONG" draggable="false"><b>ONE CITY. DIFFERENT JOURNEYS.</b><em>BACK TO MYEONGDONG MAP ↗</em></a>
+      <button class="chip big" id="restart">↺ RESTART EXPERIENCE</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<noscript><p style="position:fixed;inset:auto 0 0;padding:16px;background:#111216;color:#f5f5f6;text-align:center">BRIDGE needs JavaScript and WebGL2 for the full experience.</p></noscript>
+<script src="js/config.js"></script>
+<script src="assets/model/bridge.glb.js"></script>
+<script src="js/gl.js"></script>
+<script src="js/main.js"></script>
+<!--BR3:start-->
+<script type="module">
+/* bundled by tools/build3d.py — source: js3d/ */
+import * as THREE from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { Reflector } from 'three/addons/objects/Reflector.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+// ---- js3d/config/settings.js
+const __m_js3d_config_settings_js = (() => {
+
+// =============================================================
+//  PROJECT SETTINGS — 2030 MYEONGDONG
+//  모든 수치/경로/타이밍은 이 파일에서 조정합니다.
+// =============================================================
+
+const COLORS = {
+  bg: 0x050507, bg2: 0x101017, surface: 0x191921,
+  purple: 0x7628f5, violet: 0x8f55ff, bright: 0xc2a0ff, deep: 0x3d1486, blue: 0x5a5cff, lime: 0xc5ff35,
+};
+
+const ASSETS = {
+  openModel: 'assets/models/epcs_open.glb',
+  closedModel: 'assets/models/epcs_closed.glb',
+};
+
+// GLB 단위(약 0.26) → 실제 미터(약 2.6m)로 변환
+const MODEL_SCALE = 10;
+
+/*
+ * GLB 메시 분석 결과 (노드 인덱스 기준, 파일에 이름/애니메이션 없음)
+ * OPEN  모델 55개 노드 / CLOSED 모델 48개 노드
+ * 두 모델은 동일한 부품 메시를 공유 → 열림/닫힘 사이의 강체 변환을 직접 계산함 (Kabsch 정합)
+ */
+const OPEN_PARTS = {
+  ledFloor: [12],          // 바닥을 따라 이어지는 LED 라인
+  bandL: [3], bandR: [0],  // 양 끝 모듈 LED 띠
+  topL: [2], topR: [1],    // 양 끝 모듈 상판
+  modL: [5], modR: [4],    // 양 끝 사다리꼴 모듈 몸체
+  panelL: [10, 11], panelR: [46, 47], // 수직 패널 (닫힘 상태에서는 중앙 커버)
+  stripL: [6, 7],          // 왼쪽 패널에 연결된 아크릴 스트립 반쪽 (A 하단, B 상단)
+  stripR: [8, 9],          // 오른쪽 패널에 연결된 아크릴 스트립 반쪽 (A 상단, B 하단)
+};
+const OPEN_STATIC_EXCLUDE = [0,1,2,3,4,5,6,7,8,9,10,11,12,46,47];
+
+const CLOSED_PARTS = { led: [0], bands: [40, 45] };
+
+/*
+ * 기구학 (GLB 좌표계, Z축 기준 회전)
+ *  - 왼쪽 패널: 피벗 (-0.058, 0.0111)에서 -90° → 바닥 커버
+ *  - 오른쪽 패널: 피벗 (0.0911, 0.0111)에서 +90° → 바닥 커버
+ *  - 끝 모듈: 몸체 0.0079, LED띠 0.0159, 상판 0.0165 만큼 하강하여 수납 (텔레스코픽)
+ *  - 정합 오차 < 0.5mm(실척 5mm)
+ */
+const KINEMATICS = {
+  pivotL: [-0.05800, 0.01112],
+  pivotR: [0.09112, 0.01112],
+  liftBody: 0.0079, liftBand: 0.0159, liftTop: 0.0165,
+  panelMidY: 0.047,
+};
+
+// 설치 레이아웃 (미터). 골목 폭/개수를 바꾸면 자동 재배치됩니다.
+const LAYOUT = {
+  alleyHalf: 9.0,          // 골목 반폭 (건물면까지)
+  rowX: 1.95,              // 긴급 통로 중심에서 제품 열까지 거리
+  unitsPerRow: 4,          // 열당 제품 개수
+  firstZ: -3.2,            // 첫 제품 중심 위치
+  pitch: 4.3,              // 제품 간 간격(중심 기준)
+  crossZ0: 1.6, crossZ1: 10.6, // 골목 바깥 교차 도로
+};
+
+// 시나리오 진행도 구간 (0~1)
+const STAGES = [
+  { id: 'standby',   from: 0.00, to: 0.14 },
+  { id: 'detect',    from: 0.14, to: 0.28 },
+  { id: 'initial',   from: 0.28, to: 0.43 },
+  { id: 'barrier',   from: 0.43, to: 0.65 },
+  { id: 'boundary',  from: 0.65, to: 0.76 },
+  { id: 'clear',     from: 0.76, to: 0.89 },
+  { id: 'reset',     from: 0.89, to: 1.00 },
+];
+
+const QUALITY = (() => {
+  const mobile = matchMedia('(max-width: 820px)').matches || /Mobi|Android/i.test(navigator.userAgent);
+  return {
+    mobile,
+    dpr: Math.min(window.devicePixelRatio || 1, mobile ? 1.25 : 1.6),
+    people: mobile ? 46 : 110,
+    reflector: !mobile,
+    bloom: true,
+    shadows: !mobile,
+  };
+})();
+
+return { COLORS, ASSETS, MODEL_SCALE, OPEN_PARTS, OPEN_STATIC_EXCLUDE, CLOSED_PARTS, KINEMATICS, LAYOUT, STAGES, QUALITY };
+})();
+
+// ---- js3d/fx/GradePass.js
+const __m_js3d_fx_GradePass_js = (() => {
+
+/*
+ * GradeShader — 사이트 전체의 블랙·퍼플 색보정 (선형 HDR 단계, OutputPass 이전)
+ *  - 어두운 영역을 깊은 퍼플-블랙으로 리프트 (도시/스튜디오/추상 장면 모두 같은 무드)
+ *  - 하이라이트의 미세한 바이올렛 스플릿 톤, 중간톤 채도 약간 억제 (따뜻한 간판은 유지)
+ *  - 가장자리 미세 색수차, 비네트, 필름 그레인
+ */
+const GradeShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    uTime: { value: 0 },
+    uVignette: { value: 0.9 },
+    uCA: { value: 0.00025 },
+    uGrain: { value: 0.035 },
+    uLift: { value: 1 },
+    uSat: { value: 0.9 },
+  },
+  vertexShader: /* glsl */`
+    varying vec2 vUv;
+    void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+  fragmentShader: /* glsl */`
+    uniform sampler2D tDiffuse; uniform float uTime, uVignette, uCA, uGrain, uLift, uSat;
+    varying vec2 vUv;
+    float hash(vec2 p){ return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+    void main(){
+      vec2 c = vUv - 0.5;
+      float r2 = dot(c, c);
+      vec2 off = c * r2 * uCA * 12.0;
+      vec3 col;
+      col.r = texture2D(tDiffuse, vUv + off).r;
+      col.g = texture2D(tDiffuse, vUv).g;
+      col.b = texture2D(tDiffuse, vUv - off).b;
+      float lum = dot(col, vec3(0.2126, 0.7152, 0.0722));
+      col = mix(vec3(lum), col, uSat);
+      // purple-black lift in the shadows, faint violet in highlights
+      vec3 lift = vec3(0.010, 0.004, 0.022) * uLift;
+      col += lift * (1.0 - smoothstep(0.0, 0.25, lum));
+      col *= mix(vec3(1.0), vec3(1.03, 0.97, 1.08), smoothstep(0.4, 2.0, lum));
+      float vig = smoothstep(0.85, 0.18, r2 * 1.6);
+      col *= mix(1.0, vig, uVignette);
+      float n = hash(vUv * vec2(1931.0, 1213.0) + fract(uTime * 7.13)) - 0.5;
+      col += n * uGrain * (0.25 + lum * 0.6);
+      gl_FragColor = vec4(max(col, 0.0), 1.0);
+    }`,
+};
+
+/*
+ * RadialBlurShader — 인트로 흡입 구간의 방사형 모션 블러 + 원근 왜곡
+ * 고정된 소실점(화면 중앙)을 향해 샘플을 누적 → 빛이 카메라 옆으로 밀려나며 스쳐 지나가는 속도감
+ */
+const RadialBlurShader = {
+  uniforms: { tDiffuse: { value: null }, uStrength: { value: 0 }, uDistort: { value: 0 }, uCenter: { value: [0.5, 0.5] } },
+  vertexShader: /* glsl */`varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+  fragmentShader: /* glsl */`
+    uniform sampler2D tDiffuse; uniform float uStrength, uDistort; uniform vec2 uCenter;
+    varying vec2 vUv;
+    void main(){
+      vec2 d = vUv - uCenter;
+      float r2 = dot(d, d);
+      vec2 uv = uCenter + d * (1.0 - uDistort * 0.35 + uDistort * r2 * 1.2);   // barrel-like perspective stretch
+      vec2 dir = (uv - uCenter);
+      vec3 acc = vec3(0.0); float wsum = 0.0;
+      for (int i = 0; i < 16; i++) {
+        float t = float(i) / 15.0;
+        float w = 1.0 - t * 0.85;
+        acc += texture2D(tDiffuse, uCenter + dir * (1.0 - uStrength * t * (0.35 + r2 * 2.5))).rgb * w;
+        wsum += w;
+      }
+      gl_FragColor = vec4(acc / wsum, 1.0);
+    }`,
+};
+
+return { GradeShader, RadialBlurShader };
+})();
+
+// ---- js3d/core/batch.js
+const __m_js3d_core_batch_js = (() => {
+
+
+
+// 정적 지오메트리를 재질별로 모아 하나의 드로우콜로 병합 (도시 성능 최적화)
+class Batch {
+  constructor() { this.lists = new Map(); }
+  add(key, geometry, matrix, color) {
+    let g = geometry.index ? geometry.toNonIndexed() : geometry.clone();
+    if (matrix) g.applyMatrix4(matrix);
+    for (const name of Object.keys(g.attributes)) {
+      if (!['position', 'normal', 'uv'].includes(name)) g.deleteAttribute(name);
+    }
+    if (!g.attributes.uv) {
+      g.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(g.attributes.position.count * 2), 2));
+    }
+    const c = new THREE.Color(color ?? 0xffffff);
+    const n = g.attributes.position.count;
+    const arr = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) { arr[i * 3] = c.r; arr[i * 3 + 1] = c.g; arr[i * 3 + 2] = c.b; }
+    g.setAttribute('color', new THREE.BufferAttribute(arr, 3));
+    if (!this.lists.has(key)) this.lists.set(key, []);
+    this.lists.get(key).push(g);
+    return g;
+  }
+  build(materials, parent, { cast = false, receive = true } = {}) {
+    const out = {};
+    for (const [key, list] of this.lists) {
+      if (!list.length || !materials[key]) continue;
+      const geo = mergeGeometries(list, false);
+      geo.computeBoundingSphere();
+      const mesh = new THREE.Mesh(geo, materials[key]);
+      mesh.castShadow = cast; mesh.receiveShadow = receive;
+      parent.add(mesh);
+      out[key] = mesh;
+    }
+    return out;
+  }
+}
+
+const M4 = new THREE.Matrix4();
+function mat(x, y, z, ry = 0, rx = 0, rz = 0, sx = 1, sy = 1, sz = 1) {
+  const m = new THREE.Matrix4();
+  m.compose(new THREE.Vector3(x, y, z), new THREE.Quaternion().setFromEuler(new THREE.Euler(rx, ry, rz)), new THREE.Vector3(sx, sy, sz));
+  return m;
+}
+
+// PlaneGeometry with uv remapped into an atlas rectangle
+function atlasPlane(w, h, r) {
+  const g = new THREE.PlaneGeometry(w, h);
+  const uv = g.attributes.uv;
+  for (let i = 0; i < uv.count; i++) {
+    uv.setXY(i, r.u0 + uv.getX(i) * (r.u1 - r.u0), r.v0 + uv.getY(i) * (r.v1 - r.v0));
+  }
+  return g;
+}
+
+// seeded random
+function rng(seed = 1) {
+  let s = seed >>> 0;
+  return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+}
+
+return { Batch, M4, mat, atlasPlane, rng };
+})();
+
+// ---- js3d/components/CityTextures.js
+const __m_js3d_components_CityTextures_js = (() => {
+const { rng } = __m_js3d_core_batch_js;
+
+
+const KFONT = '"Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif';
+
+function canvas(w, h) {
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  return [c, c.getContext('2d')];
+}
+function tex(c, { srgb = true, repeat = false, aniso = 4 } = {}) {
+  const t = new THREE.CanvasTexture(c);
+  if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+  if (repeat) t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.anisotropy = aniso;
+  t.needsUpdate = true;
+  return t;
+}
+
+// ---------------------------------------------------------------- facades
+// 각 텍스처 = 가로 4베이(12m) × 세로 4층(14.4m)
+const FACADE_STYLES = ['curtain', 'punched', 'ribbon', 'panel', 'brick', 'grid'];
+function makeFacades(seed = 7) {
+  const R = rng(seed);
+  const out = [];
+  for (const style of FACADE_STYLES) {
+    const S = 1024;
+    const [c, g] = canvas(S, S);
+    const [e, ge] = canvas(S, S);
+    ge.fillStyle = '#000'; ge.fillRect(0, 0, S, S);
+    const bayW = S / 4, flH = S / 4;
+    const base = { curtain: '#0d1016', punched: '#2a2826', ribbon: '#1b1c22', panel: '#16161b', brick: '#3a2a24', grid: '#22232a' }[style];
+    g.fillStyle = base; g.fillRect(0, 0, S, S);
+    // subtle material noise
+    for (let i = 0; i < 2600; i++) {
+      g.fillStyle = `rgba(255,255,255,${R() * 0.025})`;
+      g.fillRect(R() * S, R() * S, 2 + R() * 6, 1 + R() * 3);
+    }
+    const lit = () => {
+      const r = R();
+      if (r < 0.42) return null;
+      const pal = ['#ffd9a0', '#ffe8c4', '#cfe3ff', '#fff4e0', '#ffc78a', '#e9f0ff'];
+      return pal[(R() * pal.length) | 0];
+    };
+    for (let fy = 0; fy < 4; fy++) {
+      for (let bx = 0; bx < 4; bx++) {
+        const x = bx * bayW, y = fy * flH;
+        if (style === 'curtain') {
+          g.fillStyle = '#0a0d14'; g.fillRect(x + 4, y + 6, bayW - 8, flH - 16);
+          const L = lit();
+          for (let k = 0; k < 3; k++) {
+            const px = x + 6 + k * (bayW - 12) / 3;
+            const grd = g.createLinearGradient(px, y, px + 40, y + flH);
+            grd.addColorStop(0, '#1a2233'); grd.addColorStop(1, '#0b0e15');
+            g.fillStyle = grd; g.fillRect(px + 2, y + 10, (bayW - 12) / 3 - 4, flH - 24);
+            if (L && R() > 0.3) {
+              ge.fillStyle = L; ge.globalAlpha = 0.35 + R() * 0.5;
+              ge.fillRect(px + 2, y + 10, (bayW - 12) / 3 - 4, flH - 24); ge.globalAlpha = 1;
+            }
+          }
+          g.fillStyle = '#2b2f38'; g.fillRect(x, y + flH - 12, bayW, 12);
+          g.fillRect(x, y, 4, flH);
+        } else if (style === 'punched' || style === 'brick') {
+          if (style === 'brick') {
+            g.strokeStyle = 'rgba(0,0,0,0.35)'; g.lineWidth = 1;
+            for (let yy = y; yy < y + flH; yy += 10) {
+              g.beginPath(); g.moveTo(x, yy); g.lineTo(x + bayW, yy); g.stroke();
+              for (let xx = x + ((yy / 10) % 2) * 15; xx < x + bayW; xx += 30) { g.beginPath(); g.moveTo(xx, yy); g.lineTo(xx, yy + 10); g.stroke(); }
+            }
+          }
+          const ww = bayW * 0.56, wh = flH * 0.56, wx = x + (bayW - ww) / 2, wy = y + flH * 0.18;
+          g.fillStyle = '#121216'; g.fillRect(wx - 8, wy - 8, ww + 16, wh + 22);
+          g.fillStyle = '#5b5852'; g.fillRect(wx - 10, wy + wh + 6, ww + 20, 8);
+          g.fillStyle = '#0c0f15'; g.fillRect(wx, wy, ww, wh);
+          g.fillStyle = '#3c3c42'; g.fillRect(wx + ww / 2 - 2, wy, 4, wh);
+          const L = lit();
+          if (L) {
+            ge.fillStyle = L; ge.globalAlpha = 0.55 + R() * 0.4;
+            ge.fillRect(wx, wy, ww / 2 - 2, wh); if (R() > 0.4) ge.fillRect(wx + ww / 2 + 2, wy, ww / 2 - 2, wh);
+            ge.globalAlpha = 1;
+            if (R() > 0.6) { ge.fillStyle = 'rgba(0,0,0,0.7)'; ge.fillRect(wx, wy, ww, wh * (0.2 + R() * 0.4)); }
+          }
+        } else if (style === 'ribbon') {
+          g.fillStyle = '#0b0d13'; g.fillRect(x, y + flH * 0.3, bayW, flH * 0.5);
+          g.fillStyle = '#26272e'; g.fillRect(x, y + flH * 0.3 - 6, bayW, 6);
+          for (let k = 0; k < 4; k++) { g.fillStyle = '#30313a'; g.fillRect(x + k * bayW / 4, y + flH * 0.3, 3, flH * 0.5); }
+          const L = lit();
+          if (L) { ge.fillStyle = L; ge.globalAlpha = 0.4 + R() * 0.5; ge.fillRect(x + 3, y + flH * 0.3, bayW - 6, flH * 0.5); ge.globalAlpha = 1; }
+        } else if (style === 'panel') {
+          g.fillStyle = '#1d1d23'; g.fillRect(x + 3, y + 3, bayW - 6, flH - 6);
+          g.fillStyle = '#0a0b10'; g.fillRect(x + bayW * 0.1, y + flH * 0.2, bayW * 0.18, flH * 0.62);
+          g.fillRect(x + bayW * 0.72, y + flH * 0.2, bayW * 0.18, flH * 0.62);
+          const L = lit();
+          if (L) { ge.fillStyle = L; ge.globalAlpha = 0.6; ge.fillRect(x + bayW * 0.1, y + flH * 0.2, bayW * 0.18, flH * 0.62); ge.globalAlpha = 1; }
+          if (R() > 0.55) { ge.fillStyle = R() > 0.5 ? '#7fe7ff' : '#ffb0d8'; ge.globalAlpha = 0.85; ge.fillRect(x + bayW * 0.48, y + 8, 3, flH - 16); ge.globalAlpha = 1; }
+        } else if (style === 'grid') {
+          for (let i = 0; i < 3; i++) for (let j = 0; j < 2; j++) {
+            const wx = x + 12 + i * (bayW - 24) / 3, wy = y + 14 + j * (flH - 28) / 2;
+            g.fillStyle = '#0c0e14'; g.fillRect(wx + 3, wy + 3, (bayW - 24) / 3 - 6, (flH - 28) / 2 - 6);
+            if (R() > 0.55) { ge.fillStyle = R() > 0.7 ? '#cfe3ff' : '#ffd9a0'; ge.globalAlpha = 0.45 + R() * 0.4; ge.fillRect(wx + 3, wy + 3, (bayW - 24) / 3 - 6, (flH - 28) / 2 - 6); ge.globalAlpha = 1; }
+          }
+        }
+        // small wall lights
+        if (R() > 0.82) { ge.fillStyle = '#fff1d6'; ge.beginPath(); ge.arc(x + 10, y + 10, 4, 0, 7); ge.fill(); }
+      }
+    }
+    out.push({ map: tex(c, { repeat: true }), emissive: tex(e, { repeat: true }), style });
+  }
+  return out;
+}
+
+// ---------------------------------------------------------------- sign atlas
+class SignAtlas {
+  constructor(size = 2048) {
+    [this.canvas, this.g] = canvas(size, size);
+    this.size = size;
+    this.g.fillStyle = '#000'; this.g.fillRect(0, 0, size, size);
+    this.x = 0; this.y = 0; this.rowH = 0;
+    this.cache = new Map();
+  }
+  // 아틀라스 공간을 아끼기 위해 단어/메뉴/실내를 미리 한 번씩만 그려 두고 재사용
+  prepare(shopWords, bladeWords, menus, styles) {
+    const hash = t => [...t].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
+    shopWords.forEach(w => this.cache.set('b:' + w, this._band(w, styles[hash(w) % styles.length])));
+    bladeWords.forEach(w => this.cache.set('v:' + w, this._blade(w, styles[(hash(w) + 3) % styles.length])));
+    menus.forEach(([t, p]) => this.cache.set('m:' + t, this._menu(t, p, { bg: '#f7f2e6', fg: '#b4262f' })));
+    for (let i = 0; i < 15; i++) this.cache.set('i:' + i, this._interior(1000 + i * 77));
+  }
+  band(text, style) { return this.cache.get('b:' + text) || this._band(text, style); }
+  blade(text, style) { return this.cache.get('v:' + text) || this._blade(text, style); }
+  menu(title, price, style) { return this.cache.get('m:' + title) || this._menu(title, price, style); }
+  interior(seed) { return this.cache.get('i:' + (seed % 15)) || this._interior(seed); }
+  alloc(w, h) {
+    if (this.x + w > this.size) { this.x = 0; this.y += this.rowH + 2; this.rowH = 0; }
+    const r = { x: this.x, y: this.y, w, h };
+    this.x += w + 2; this.rowH = Math.max(this.rowH, h);
+    const S = this.size;
+    return { ...r, u0: r.x / S, u1: (r.x + w) / S, v0: 1 - (r.y + h) / S, v1: 1 - r.y / S };
+  }
+  // horizontal shop band
+  _band(text, style) {
+    const r = this.alloc(508, 96), g = this.g;
+    g.save(); g.translate(r.x, r.y);
+    if (style.box) {
+      g.fillStyle = style.bg; g.fillRect(0, 0, 508, 96);
+      g.fillStyle = style.fg;
+    } else {
+      g.fillStyle = '#060608'; g.fillRect(0, 0, 508, 96);
+      g.strokeStyle = style.fg; g.lineWidth = 3; g.globalAlpha = 0.5; g.strokeRect(8, 8, 492, 80); g.globalAlpha = 1;
+      g.shadowColor = style.fg; g.shadowBlur = 14; g.fillStyle = style.fg;
+    }
+    g.font = `600 ${text.length > 7 ? 44 : 54}px ${KFONT}`;
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(text, 254, 50, 466);
+    g.restore();
+    return r;
+  }
+  // vertical blade sign (text stacked)
+  _blade(text, style) {
+    const H = 512, W = 112;
+    const r = this.alloc(W, H), g = this.g;
+    g.save(); g.translate(r.x, r.y);
+    g.fillStyle = style.box ? style.bg : '#060608'; g.fillRect(0, 0, W, H);
+    if (!style.box) { g.shadowColor = style.fg; g.shadowBlur = 12; }
+    g.fillStyle = style.fg;
+    const chars = [...text];
+    const fs = Math.min(84, (H - 40) / chars.length);
+    g.font = `700 ${fs}px ${KFONT}`; g.textAlign = 'center'; g.textBaseline = 'middle';
+    chars.forEach((ch, i) => g.fillText(ch, W / 2, 20 + fs / 2 + i * ((H - 40) / chars.length)));
+    g.restore();
+    return r;
+  }
+  // stall menu / price board
+  _menu(title, price, style) {
+    const r = this.alloc(256, 128), g = this.g;
+    g.save(); g.translate(r.x, r.y);
+    g.fillStyle = style.bg; g.fillRect(0, 0, 256, 128);
+    g.fillStyle = style.fg; g.font = `700 48px ${KFONT}`; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(title, 128, 52, 236);
+    g.font = `500 26px ${KFONT}`; g.globalAlpha = 0.85; g.fillText(price, 128, 102); g.restore();
+    return r;
+  }
+  // shop interior (seen through glass storefront)
+  _interior(seed) {
+    const R = rng(seed);
+    const r = this.alloc(384, 168), g = this.g;
+    g.save(); g.translate(r.x, r.y); g.scale(0.75, 0.75);
+    const warm = R() > 0.5;
+    const grd = g.createLinearGradient(0, 0, 0, 224);
+    grd.addColorStop(0, warm ? '#fff3e2' : '#eef4ff'); grd.addColorStop(1, warm ? '#b49478' : '#8a95a8');
+    g.fillStyle = grd; g.fillRect(0, 0, 512, 224);
+    for (let s = 0; s < 4; s++) {
+      const y = 40 + s * 44;
+      g.fillStyle = 'rgba(40,30,30,0.35)'; g.fillRect(10, y + 30, 492, 4);
+      for (let x = 14; x < 500; x += 8 + R() * 10) {
+        const hue = (R() * 360) | 0;
+        g.fillStyle = `hsl(${hue},${40 + R() * 40}%,${45 + R() * 30}%)`;
+        const h = 10 + R() * 18; g.fillRect(x, y + 30 - h, 5 + R() * 6, h);
+      }
+    }
+    g.fillStyle = 'rgba(0,0,0,0.25)';
+    for (let k = 0; k < 3; k++) { const x = R() * 480; g.beginPath(); g.ellipse(x, 190, 10, 26, 0, 0, 7); g.fill(); g.beginPath(); g.arc(x, 155, 8, 0, 7); g.fill(); }
+    g.restore();
+    return r;
+  }
+  texture() { return tex(this.canvas, { aniso: 8 }); }
+}
+
+const SIGN_STYLES = [
+  { fg: '#fff1dc', box: false }, { fg: '#ff6aa8', box: false }, { fg: '#58e3ff', box: false },
+  { fg: '#ffbe5c', box: false }, { fg: '#ffffff', box: true, bg: '#d6264a' }, { fg: '#1a1a1a', box: true, bg: '#f4efe6' },
+  { fg: '#ffffff', box: true, bg: '#1b6fd8' }, { fg: '#ffffff', box: true, bg: '#0f9e7a' }, { fg: '#ff4d6d', box: false },
+  { fg: '#9df7d0', box: false }, { fg: '#111', box: true, bg: '#ffd23f' },
+];
+const SHOP_WORDS = ['화장품', '스킨케어 라운지', '마스크팩 전문점', '명동 뷰티', '환전소', '약국', '안경', '기념품', '카페 2030', '편의점', '한방 화장품', '네일 살롱', '신발', 'K-POP 굿즈', '면세 화장품', '향수 공방', '포토 스튜디오', '디저트 하우스', '라멘', '치킨 & 맥주', '선크림 전문', '헤어 살롱', '모자 · 잡화', '전통 차'];
+const BLADE_WORDS = ['화장품', '뷰티', '환전', '카페', '호텔', '약국', '노래방', '한식당', '안경', '기념품', '네일', '스파', '피부과', '분식', '게스트하우스', '마사지'];
+const STALL_MENU = [['떡볶이', '4,000원'], ['닭꼬치', '5,000원'], ['호떡', '2,000원'], ['어묵', '3,000원'], ['회오리감자', '5,000원'], ['계란빵', '2,500원'], ['붕어빵', '3개 2,000원'], ['탕후루', '4,000원'], ['군만두', '5,000원'], ['랍스터구이', '15,000원']];
+
+// ---------------------------------------------------------------- ground paving
+function makePaving() {
+  const S = 1024;
+  const [c, g] = canvas(S, S);
+  const [r, gr] = canvas(S, S);
+  const R = rng(3);
+  const n = 8, t = S / n;
+  g.fillStyle = '#0d0d10'; g.fillRect(0, 0, S, S);
+  gr.fillStyle = '#e0e0e0'; gr.fillRect(0, 0, S, S);
+  for (let j = 0; j < n; j++) for (let i = 0; i < n * 2; i++) {
+    const off = (j % 2) * t / 2;
+    const x = i * t / 2 * 1 + off - t / 2, y = j * t;
+    const w = t / 2 - 3;
+    const v = 34 + R() * 14;
+    g.fillStyle = `rgb(${v},${v},${v + 4})`;
+    g.fillRect(x + 2, y + 2, w, t - 4);
+    for (let k = 0; k < 40; k++) { g.fillStyle = `rgba(255,255,255,${R() * 0.05})`; g.fillRect(x + R() * w, y + R() * t, 2, 2); }
+    const rv = 70 + R() * 50;
+    gr.fillStyle = `rgb(${rv},${rv},${rv})`; gr.fillRect(x + 2, y + 2, w, t - 4);
+  }
+  // puddles — smooth areas for wet reflections
+  for (let k = 0; k < 9; k++) {
+    const x = R() * S, y = R() * S, rad = 40 + R() * 120;
+    const grd = gr.createRadialGradient(x, y, 0, x, y, rad);
+    grd.addColorStop(0, 'rgba(10,10,10,0.95)'); grd.addColorStop(1, 'rgba(10,10,10,0)');
+    gr.fillStyle = grd; gr.beginPath(); gr.arc(x, y, rad, 0, 7); gr.fill();
+    const g2 = g.createRadialGradient(x, y, 0, x, y, rad);
+    g2.addColorStop(0, 'rgba(0,0,0,0.35)'); g2.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = g2; g.beginPath(); g.arc(x, y, rad, 0, 7); g.fill();
+  }
+  return { map: tex(c, { repeat: true, aniso: 8 }), rough: tex(r, { srgb: false, repeat: true, aniso: 8 }) };
+}
+
+// ---------------------------------------------------------------- ambulance livery
+function makeAmbulanceLivery() {
+  const [c, g] = canvas(1024, 256);
+  g.fillStyle = '#f4f5f6'; g.fillRect(0, 0, 1024, 256);
+  // stripes (Korean 119 style: red + orange band)
+  g.fillStyle = '#d7192a'; g.fillRect(0, 150, 1024, 30);
+  g.fillStyle = '#f07a12'; g.fillRect(0, 184, 1024, 10);
+  g.fillStyle = '#d7192a';
+  g.font = `800 64px ${KFONT}`; g.textBaseline = 'middle';
+  g.fillText('119 구급대', 360, 96);
+  g.font = `600 22px ${KFONT}`; g.fillStyle = '#334';
+  g.fillText('EMERGENCY MEDICAL SERVICE', 364, 138);
+  // star of life
+  g.save(); g.translate(250, 96); g.fillStyle = '#1f5fd1';
+  for (let i = 0; i < 3; i++) { g.save(); g.rotate(i * Math.PI / 3); g.fillRect(-11, -46, 22, 92); g.restore(); }
+  g.fillStyle = '#fff'; g.fillRect(-3, -30, 6, 60); g.restore();
+  // door seams
+  g.strokeStyle = 'rgba(0,0,0,0.25)'; g.lineWidth = 3;
+  [180, 470, 720].forEach(x => { g.beginPath(); g.moveTo(x, 20); g.lineTo(x, 240); g.stroke(); });
+  return tex(c);
+}
+
+function makeRearLivery() {
+  const [c, g] = canvas(512, 512);
+  g.fillStyle = '#f4f5f6'; g.fillRect(0, 0, 512, 512);
+  g.fillStyle = '#d7192a'; g.fillRect(0, 300, 512, 54);
+  g.font = `800 120px ${KFONT}`; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText('119', 256, 170);
+  g.strokeStyle = 'rgba(0,0,0,0.3)'; g.lineWidth = 4; g.beginPath(); g.moveTo(256, 20); g.lineTo(256, 500); g.stroke();
+  return tex(c);
+}
+
+return { makeFacades, SignAtlas, SIGN_STYLES, SHOP_WORDS, BLADE_WORDS, STALL_MENU, makePaving, makeAmbulanceLivery, makeRearLivery };
+})();
+
+// ---- js3d/components/Crowd.js
+const __m_js3d_components_Crowd_js = (() => {
+const { rng } = __m_js3d_core_batch_js;
+const { LAYOUT } = __m_js3d_config_settings_js;
+
+
+
+
+/*
+ * Crowd v2 — 세미 스타일라이즈드 도시 캐릭터 시스템 (인스턴싱)
+ *
+ * 형태 : 단면 로프트(타원 링을 쌓아 만든 매끄러운 메시)로 인체·의상을 제작
+ *        어깨·쇄골·가슴·허리가 있는 몸통, 목, 턱선·코·귀가 있는 머리, 테이퍼진 팔다리, 손
+ *        의상은 몸 위에 두께를 가진 별도 메시: 오버사이즈 재킷 / 롱코트(상의+자락) / 후드(+후드) /
+ *        크롭 가죽 재킷 / 티셔츠, 슬림·와이드·카고 팬츠, 스커트, 스니커즈·부츠
+ *        헤어: 크롭·사이드파트·롱·단발·번·비니 / 소품: 백팩·크로스백·쇼핑백·안경·시계·카고 포켓
+ * 재질 : 면, 울(시른), 테크 나일론, 소프트 가죽, 데님, 피부, 헤어, 금속 — 재질마다 다른 빛 반응
+ *        + 보라 네온 방향의 약한 림라이트 (도시 조명과 함께 실루엣과 의상 형태를 구분)
+ * 동작 : 골반 흔들림·상체 역회전·팔꿈치 지연·발목 롤·머리 안정화가 있는 보행 주기,
+ *        사람마다 다른 속도/보폭/방향, 부드러운 방향 전환, 서로 겹치지 않는 회피,
+ *        긴급 신호 인지 → 고개 돌림 → 멈춤 → 통로 밖으로 이동
+ * LOD  : 카메라 거리에 따라 디테일 파츠(손·소품·헤어 자락·포켓)를 생략, 원거리는 숨김
+ */
+
+// ------------------------------------------------------------------ geometry helpers
+// rings: [y, rx, rz, cz=0, cx=0]
+function loft(rings, seg = 18, { capTop = true, capBottom = true } = {}) {
+  const pos = [], idx = [];
+  rings.forEach(([y, rx, rz, cz = 0, cx = 0]) => {
+    for (let j = 0; j < seg; j++) {
+      const a = j / seg * Math.PI * 2;
+      pos.push(cx + Math.sin(a) * rx, y, cz + Math.cos(a) * rz);
+    }
+  });
+  for (let i = 0; i < rings.length - 1; i++) {
+    for (let j = 0; j < seg; j++) {
+      const a = i * seg + j, b = i * seg + (j + 1) % seg, c = (i + 1) * seg + j, d = (i + 1) * seg + (j + 1) % seg;
+      if (rings[i][0] > rings[i + 1][0]) idx.push(a, c, b, b, c, d); else idx.push(a, b, c, b, d, c);
+    }
+  }
+  const down = rings[0][0] > rings[rings.length - 1][0];
+  const cap = (ri, top) => {
+    const [y, , , cz = 0, cx = 0] = rings[ri];
+    const ci = pos.length / 3; pos.push(cx, y, cz);
+    for (let j = 0; j < seg; j++) {
+      const a = ri * seg + j, b = ri * seg + (j + 1) % seg;
+      const up = top !== down;
+      if (up) idx.push(ci, a, b); else idx.push(ci, b, a);
+    }
+  };
+  if (capBottom) cap(0, false);
+  if (capTop) cap(rings.length - 1, true);
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
+}
+const scaleRings = (r, sx, sz, extra = []) => [...r.map(([y, rx, rz, cz = 0, cx = 0]) => [y, rx * sx, rz * sz, cz, cx]), ...extra];
+const merge = list => mergeGeometries(list.map(g => { const n = g.index ? g : g; n.deleteAttribute('uv'); return n; }), false);
+function ellipsoid(rx, ry, rz, x, y, z, ws = 12, hs = 8) {
+  const g = new THREE.SphereGeometry(1, ws, hs); g.scale(rx, ry, rz); g.translate(x, y, z); return g;
+}
+function box(w, h, d, x, y, z, rz = 0, rx = 0) {
+  const g = new THREE.BoxGeometry(w, h, d); if (rz) g.rotateZ(rz); if (rx) g.rotateX(rx); g.translate(x, y, z); return g;
+}
+// foot loft along +z (forward)
+function foot(rings) { // [z, rx, ry, cy]
+  const g = loft(rings.map(([z, rx, ry, cy]) => [z, rx, ry, cy]), 14);
+  g.rotateX(Math.PI / 2);
+  return g;
+}
+
+// ------------------------------------------------------------------ body + garment library (bone-local)
+const TORSO = [[-0.10, .150, .098], [0.0, .148, .096], [0.1, .136, .090, .004], [0.22, .150, .100, .008], [0.34, .170, .108, .012], [0.44, .184, .108, .008], [0.5, .178, .098, 0], [0.555, .12, .075, -.005], [0.59, .062, .056, -.008]];
+function buildGeometry() {
+  const G = {};
+  G.tee = loft(scaleRings(TORSO, 1.03, 1.05));
+  G.jacketOS = loft([[-0.17, .182, .132, .006], [-0.14, .188, .136, .006], [0.0, .186, .132, .006], [0.2, .19, .132, .01], [0.4, .212, .132, .01], [0.48, .228, .124, 0], [0.55, .17, .1, -.004], [0.6, .09, .082, -.01], [0.645, .086, .078, -.014]], 20, { capTop: false });
+  G.coatTop = loft([[-0.06, .17, .118], [0.1, .158, .108, .004], [0.26, .172, .114, .01], [0.42, .198, .118, .008], [0.5, .2, .108], [0.56, .14, .086, -.004], [0.61, .095, .085, -.01], [0.66, .092, .082, -.016]], 20, { capTop: false });
+  G.hoodie = loft([[-0.16, .168, .118], [-0.12, .176, .124, .004], [0.1, .17, .118, .006], [0.3, .186, .124, .012], [0.46, .205, .118, .006], [0.53, .185, .102], [0.58, .11, .08, -.006], [0.6, .066, .06, -.008]]);
+  G.crop = loft([[0.16, .158, .106, .008], [0.2, .164, .11, .008], [0.32, .182, .118, .012], [0.45, .198, .116, .008], [0.52, .19, .104], [0.565, .13, .08, -.005], [0.61, .085, .075, -.01], [0.63, .082, .072, -.012]], 20, { capTop: false });
+  G.hood = loft([[0.5, .085, .05, -.1], [0.56, .118, .075, -.115], [0.64, .112, .07, -.112], [0.7, .08, .05, -.1], [0.73, .03, .02, -.09]]);
+  // pelvis-bone garments
+  G.hips = loft([[0.12, .148, .098], [0.04, .158, .104], [-0.05, .158, .102], [-0.12, .13, .092], [-0.15, .08, .07]]);
+  G.coatSkirt = loft([[0.12, .172, .12], [-0.08, .186, .132], [-0.34, .206, .15, .004], [-0.6, .226, .164, .006], [-0.62, .222, .16, .006]], 22);
+  G.skirt = loft([[0.1, .15, .102], [-0.05, .172, .12], [-0.28, .214, .158], [-0.4, .228, .168]], 22);
+  // arms (shoulder / elbow bone local, pointing -y)
+  G.uaFit = loft([[0.06, .02, .02], [0.045, .056, .058], [0.0, .062, .064], [-0.15, .052, .054], [-0.29, .046, .048]]);
+  G.uaWide = loft([[0.06, .03, .03], [0.04, .074, .076], [0.0, .082, .084], [-0.15, .076, .078], [-0.3, .07, .072]]);
+  G.uaCoat = loft([[0.06, .028, .028], [0.04, .066, .068], [0.0, .072, .074], [-0.15, .066, .068], [-0.3, .06, .062]]);
+  G.faFit = loft([[0.03, .046, .048], [-0.12, .045, .047], [-0.24, .038, .04], [-0.265, .04, .042]]);
+  G.faWide = loft([[0.03, .068, .07], [-0.14, .066, .068], [-0.255, .064, .066], [-0.27, .058, .06]]);
+  G.faCoat = loft([[0.03, .06, .062], [-0.25, .058, .06], [-0.27, .054, .056]]);
+  G.faSkin = loft([[0.03, .042, .044], [-0.12, .04, .041], [-0.25, .03, .031]]);
+  G.hand = merge([ellipsoid(.042, .072, .026, 0, -0.32, .004), ellipsoid(.014, .032, .014, .028, -0.3, .022)]);
+  // legs (hip / knee bone local)
+  G.thSlim = loft([[0.05, .082, .084], [-0.05, .084, .088], [-0.25, .072, .074], [-0.44, .057, .06]]);
+  G.thWide = loft([[0.05, .09, .092], [-0.2, .09, .09], [-0.44, .084, .084]]);
+  G.thCargo = loft([[0.05, .09, .092], [-0.22, .088, .088], [-0.44, .076, .078]]);
+  G.shSlim = loft([[0.03, .056, .058], [-0.1, .055, .06, -.005], [-0.3, .043, .045], [-0.42, .04, .042]]);
+  G.shWide = loft([[0.03, .082, .082], [-0.25, .086, .088], [-0.41, .092, .094]]);
+  G.shCargo = loft([[0.03, .074, .074], [-0.33, .068, .068], [-0.36, .058, .058], [-0.42, .054, .054]]);
+  G.pocket = box(.075, .1, .028, 0, -0.2, .088);
+  // shoes (ankle bone local, foot forward +z)
+  const sneakerFoot = foot([[-0.075, .03, .02, .02], [-0.06, .045, .042, .028], [-0.02, .05, .052, .03], [0.06, .052, .044, .044], [0.13, .046, .03, .055], [0.165, .028, .016, .062]]);
+  const sole = foot([[-0.08, .05, .012, .066], [0.17, .05, .012, .066]]);
+  G.sneaker = merge([sneakerFoot, sole]);
+  G.boot = merge([loft([[0.12, .05, .052], [0.0, .052, .056], [-0.03, .053, .058]]), foot([[-0.075, .034, .02, .02], [-0.06, .048, .046, .028], [0.06, .054, .046, .044], [0.14, .046, .03, .055], [0.172, .026, .016, .062]]), foot([[-0.085, .054, .016, .07], [0.18, .054, .016, .07]])]);
+  // head (head bone local: base of skull)
+  const skull = loft([[0.0, .042, .048, .014], [0.03, .058, .068, .022], [0.07, .072, .088, .016], [0.11, .083, .098, .008], [0.15, .088, .102], [0.19, .083, .096, -.006], [0.225, .064, .076, -.008], [0.25, .032, .04, -.008], [0.258, .004, .005, -.006]], 22);
+  const nose = new THREE.ConeGeometry(.016, .04, 8); nose.rotateX(Math.PI / 2); nose.translate(0, .105, .108);
+  G.head = merge([skull, nose, ellipsoid(.014, .028, .02, .091, .12, -.004, 8, 6), ellipsoid(.014, .028, .02, -.091, .12, -.004, 8, 6)]);
+  G.neck = loft([[-0.02, .048, .048], [0.13, .043, .043]]);
+  // hair
+  const cap = [[0.13, .093, .107, -.004], [0.18, .095, .109, -.008], [0.23, .08, .093, -.01], [0.265, .047, .058, -.01], [0.282, .004, .005, -.01]];
+  G.hairCrop = loft(cap, 22, { capBottom: false });
+  G.hairSide = merge([loft(cap.map(([y, a, b, c]) => [y + 0.006, a * 1.03, b * 1.03, c, .006]), 22, { capBottom: false }), ellipsoid(.07, .022, .03, .02, .2, .085)]);
+  G.hairLong = merge([loft(cap, 22, { capBottom: false }), loft([[0.21, .096, .07, -.045], [0.08, .102, .066, -.06], [-0.06, .1, .055, -.07], [-0.2, .085, .04, -.07], [-0.23, .06, .025, -.065]], 18)]);
+  G.hairBob = merge([loft(cap.map(([y, a, b, c]) => [y, a * 1.06, b * 1.04, c]), 22, { capBottom: false }), loft([[0.2, .1, .07, -.04], [0.1, .106, .072, -.045], [0.03, .1, .066, -.045], [0.01, .09, .058, -.04]], 18)]);
+  G.hairBun = merge([loft(cap, 22, { capBottom: false }), ellipsoid(.05, .048, .05, 0, .25, -.075)]);
+  G.beanie = merge([loft([[0.145, .099, .113, -.004], [0.2, .1, .113, -.008], [0.26, .084, .096, -.01], [0.3, .045, .055, -.012], [0.312, .004, .005, -.012]], 22, { capBottom: false }), loft([[0.13, .103, .117, -.004], [0.17, .103, .117, -.004]], 22)]);
+  // accessories
+  G.glasses = merge([box(.17, .034, .012, 0, .128, .1), box(.008, .012, .1, .085, .128, .05), box(.008, .012, .1, -.085, .128, .05)]);
+  G.watch = new THREE.CylinderGeometry(.043, .043, .016, 16, 1, true); G.watch.translate(0, -0.23, 0);
+  G.backpack = merge([loft([[0.12, .13, .055, -.17], [0.2, .14, .068, -.18], [0.4, .135, .065, -.18], [0.47, .1, .045, -.17]], 16), box(.03, .38, .015, .1, .32, -.11, 0, -0.15), box(.03, .38, .015, -.1, .32, -.11, 0, -0.15)]);
+  G.crossbody = merge([loft([[-0.06, .07, .03, .125, .1], [0.06, .075, .032, .125, .1]], 12), box(.028, .68, .012, 0, .28, .118, 0.82)]);
+  G.shopBag = merge([box(.24, .28, .09, 0, -0.52, .03), box(.012, .1, .012, .06, -0.35, .03), box(.012, .1, .012, -.06, -0.35, .03)]);
+  G.shadow = new THREE.PlaneGeometry(0.95, 0.95).rotateX(-Math.PI / 2).translate(0, 0.012, 0);
+  Object.entries(G).forEach(([n, g]) => { if (n !== 'shadow' && g.attributes.uv) g.deleteAttribute('uv'); g.computeBoundingSphere(); });
+  return G;
+}
+
+// ------------------------------------------------------------------ materials (with violet neon rim)
+function rim(m, strength = 0.35) {
+  m.onBeforeCompile = sh => {
+    sh.fragmentShader = sh.fragmentShader.replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+      float rimF = pow(1.0 - abs(dot(normalize(normal), normalize(vViewPosition))), 2.6);
+      float side = smoothstep(-0.25, 0.9, normalize(normal).x * 0.8 + normalize(normal).y * 0.35);
+      totalEmissiveRadiance += vec3(0.42, 0.2, 0.95) * rimF * side * ${strength.toFixed(3)};`);
+  };
+  m.customProgramCacheKey = () => 'crowdrim' + strength;
+  return m;
+}
+function materials() {
+  return {
+    cotton: rim(new THREE.MeshStandardMaterial({ roughness: 0.93, metalness: 0, envMapIntensity: 0.5 })),
+    wool: rim(new THREE.MeshPhysicalMaterial({ roughness: 0.86, sheen: 0.8, sheenRoughness: 0.75, sheenColor: new THREE.Color(0x9a8cb8), envMapIntensity: 0.5 })),
+    nylon: rim(new THREE.MeshPhysicalMaterial({ roughness: 0.4, clearcoat: 0.25, clearcoatRoughness: 0.5, sheen: 0.3, sheenColor: new THREE.Color(0xb8b0d0), specularIntensity: 0.9, envMapIntensity: 0.9 }), 0.4),
+    leather: rim(new THREE.MeshPhysicalMaterial({ roughness: 0.36, clearcoat: 0.45, clearcoatRoughness: 0.35, envMapIntensity: 1.0 }), 0.42),
+    denim: rim(new THREE.MeshStandardMaterial({ roughness: 0.88, envMapIntensity: 0.5 })),
+    skin: rim(new THREE.MeshPhysicalMaterial({ roughness: 0.52, sheen: 0.35, sheenRoughness: 0.6, sheenColor: new THREE.Color(0xffc4a8), envMapIntensity: 0.55 }), 0.28),
+    hair: rim(new THREE.MeshPhysicalMaterial({ roughness: 0.42, sheen: 1, sheenRoughness: 0.32, sheenColor: new THREE.Color(0x8c7aa8), envMapIntensity: 0.7 }), 0.45),
+    rubber: rim(new THREE.MeshStandardMaterial({ roughness: 0.62, envMapIntensity: 0.6 }), 0.25),
+    metal: new THREE.MeshStandardMaterial({ roughness: 0.28, metalness: 1, envMapIntensity: 1.2 }),
+    paper: rim(new THREE.MeshStandardMaterial({ roughness: 0.8, envMapIntensity: 0.4 }), 0.2),
+  };
+}
+
+// part → [geometry, material, bone(s), lodDetail]
+const PARTS = {
+  tee: ['tee', 'cotton', 'torso'], jacketOS: ['jacketOS', 'nylon', 'torso'], coatTop: ['coatTop', 'wool', 'torso'], hoodie: ['hoodie', 'cotton', 'torso'],
+  crop: ['crop', 'leather', 'torso'], hood: ['hood', 'cotton', 'torso', 1],
+  hips: ['hips', 'denim', 'pelvis'], coatSkirt: ['coatSkirt', 'wool', 'pelvis'], skirt: ['skirt', 'wool', 'pelvis'],
+  uaFit: ['uaFit', 'cotton', 'sh'], uaLeather: ['uaFit', 'leather', 'sh'], uaWide: ['uaWide', 'nylon', 'sh'], uaHood: ['uaWide', 'cotton', 'sh'], uaCoat: ['uaCoat', 'wool', 'sh'],
+  faFit: ['faFit', 'cotton', 'el'], faLeather: ['faFit', 'leather', 'el'], faWide: ['faWide', 'nylon', 'el'], faHood: ['faWide', 'cotton', 'el'], faCoat: ['faCoat', 'wool', 'el'], faSkin: ['faSkin', 'skin', 'el'],
+  hand: ['hand', 'skin', 'el', 1],
+  thSlim: ['thSlim', 'denim', 'hip'], thWide: ['thWide', 'wool', 'hip'], thCargo: ['thCargo', 'cotton', 'hip'], thTights: ['thSlim', 'denim', 'hip'],
+  shSlim: ['shSlim', 'denim', 'kn'], shWide: ['shWide', 'wool', 'kn'], shCargo: ['shCargo', 'cotton', 'kn'], shTights: ['shSlim', 'denim', 'kn'],
+  pocket: ['pocket', 'cotton', 'hip', 1],
+  sneaker: ['sneaker', 'rubber', 'an'], boot: ['boot', 'leather', 'an'],
+  head: ['head', 'skin', 'head'], neck: ['neck', 'skin', 'neck'],
+  hairCrop: ['hairCrop', 'hair', 'head'], hairSide: ['hairSide', 'hair', 'head'], hairLong: ['hairLong', 'hair', 'head'], hairBob: ['hairBob', 'hair', 'head'], hairBun: ['hairBun', 'hair', 'head'], beanie: ['beanie', 'cotton', 'head'],
+  glasses: ['glasses', 'metal', 'head', 1], watch: ['watch', 'metal', 'elL', 1],
+  backpack: ['backpack', 'nylon', 'torso', 1], crossbody: ['crossbody', 'leather', 'torso', 1], shopBag: ['shopBag', 'paper', 'elR', 1],
+};
+
+// fashion archetypes (black · purple city palette with a few bright accents)
+const ARCH = [
+  { n: 'oversize', top: ['jacketOS'], ua: 'uaWide', fa: 'faWide', legs: ['wide', 'slim'], shoes: ['sneaker'], hair: ['hairCrop', 'hairSide'], acc: ['crossbody', null],
+    top0: [0x111114, 0x1a1a20, 0x23232b], bottom: [0x15151a, 0x2a2a33, 0x3a3a42] },
+  { n: 'violetCoat', top: ['coatTop'], skirt: 'coatSkirt', ua: 'uaCoat', fa: 'faCoat', legs: ['slim', 'tights'], shoes: ['boot'], hair: ['hairLong', 'hairBob', 'hairBun'], acc: ['shopBag', null, 'watch'],
+    top0: [0x3b1d5c, 0x2a1645, 0x4a2470, 0x34204f], bottom: [0x121216, 0x1a1a20] },
+  { n: 'hoodCargo', top: ['hoodie'], extra: ['hood'], ua: 'uaHood', fa: 'faHood', legs: ['cargo'], shoes: ['sneaker'], hair: ['hairCrop', 'beanie'], acc: ['backpack', 'backpack', null],
+    top0: [0x6b6d74, 0x55575e, 0x8a8c93], bottom: [0x3c3a30, 0x1d1d20, 0x4a4a40] },
+  { n: 'cropWide', top: ['crop'], inner: 'tee', ua: 'uaLeather', fa: 'faLeather', legs: ['wide', 'skirt'], shoes: ['sneaker', 'boot'], hair: ['hairBob', 'hairBun', 'hairLong'], acc: ['crossbody', 'watch', null],
+    top0: [0x141416, 0x2b1d1a, 0x1c1826], bottom: [0xd6cdbd, 0x2e2a3a, 0x15151a] },
+  { n: 'techwear', top: ['jacketOS'], ua: 'uaWide', fa: 'faWide', legs: ['cargo'], shoes: ['sneaker'], hair: ['hairCrop', 'hairSide', 'beanie'], acc: ['crossbody', 'glasses'],
+    top0: [0xb9c3cc, 0x8fb4ff, 0xe4e0ef, 0xc6b4ff], bottom: [0x121214, 0x1d1d22] },
+  { n: 'longcoat', top: ['coatTop'], skirt: 'coatSkirt', ua: 'uaCoat', fa: 'faCoat', legs: ['slim'], shoes: ['boot'], hair: ['hairSide', 'hairLong', 'hairCrop'], acc: ['glasses', 'watch', null],
+    top0: [0x1a1a1f, 0x3a3128, 0x23202c], bottom: [0x121216, 0x1d1d22] },
+  { n: 'tourist', top: ['tee', 'hoodie'], ua: 'uaFit', fa: 'faSkin', legs: ['slim', 'wide'], shoes: ['sneaker'], hair: ['hairCrop', 'hairLong', 'hairBob', 'beanie'], acc: ['shopBag', 'shopBag', 'backpack'],
+    top0: [0xe8e4dc, 0x9aa3b5, 0xc9c1d8, 0x6f6a85], bottom: [0x2a3348, 0x1d2333, 0xcfc6b5] },
+  { n: 'backpacker', top: ['crop', 'tee'], ua: 'uaFit', fa: 'faFit', legs: ['slim', 'cargo'], shoes: ['sneaker'], hair: ['hairBun', 'hairCrop', 'hairSide'], acc: ['backpack'],
+    top0: [0x2d2a3a, 0x4b3f63, 0x1b1b22], bottom: [0x2a3348, 0x3c3a30] },
+];
+const SKIN = [0xe9c4a6, 0xd9ad8c, 0xc28f6c, 0xf1d2bb, 0x9c6b4e, 0xe0b897];
+const HAIR = [0x0d0b0a, 0x1d1510, 0x2a1d14, 0x5a3e28, 0x1b1a1f, 0xb89a74, 0x4a2a5a, 0xd8d4dc];
+const SHOE = [0xf0f0f2, 0x111114, 0x2a2224, 0x6a6d75];
+
+class Crowd {
+  constructor(scene, count, seed = 11) {
+    this.scene = scene; this.count = count;
+    const R = this.R = rng(seed);
+    const G = buildGeometry();
+    const M = materials();
+    const N = count;
+    this.parts = {};
+    for (const [name, [g, m, bone, lod]] of Object.entries(PARTS)) {
+      const two = ['sh', 'el', 'hip', 'kn', 'an'].includes(bone);
+      const im = new THREE.InstancedMesh(G[g], M[m], two ? N * 2 : N);
+      im.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      im.frustumCulled = false; im.castShadow = false; im.receiveShadow = false;
+      scene.add(im);
+      this.parts[name] = { im, bone, two, lod: !!lod, owner: new Int16Array(two ? N * 2 : N).fill(-1) };
+    }
+    // contact shadow blobs
+    const sc = document.createElement('canvas'); sc.width = sc.height = 64;
+    const sg = sc.getContext('2d'); const gr = sg.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gr.addColorStop(0, 'rgba(0,0,0,0.8)'); gr.addColorStop(0.55, 'rgba(0,0,0,0.35)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); sg.fillStyle = gr; sg.fillRect(0, 0, 64, 64);
+    this.shadow = new THREE.InstancedMesh(G.shadow, new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sc), transparent: true, depthWrite: false }), N);
+    this.shadow.frustumCulled = false; scene.add(this.shadow);
+
+    // skeleton template
+    const O = () => new THREE.Object3D();
+    const k = this.k = { root: O(), pelvis: O(), torso: O(), neck: O(), head: O(), shL: O(), shR: O(), elL: O(), elR: O(), hipL: O(), hipR: O(), knL: O(), knR: O(), anL: O(), anR: O() };
+    k.root.add(k.pelvis); k.pelvis.add(k.torso, k.hipL, k.hipR); k.torso.add(k.neck, k.shL, k.shR); k.neck.add(k.head);
+    k.shL.add(k.elL); k.shR.add(k.elR); k.hipL.add(k.knL); k.hipR.add(k.knR); k.knL.add(k.anL); k.knR.add(k.anR);
+    k.torso.position.y = 0.06; k.neck.position.y = 0.565; k.head.position.y = 0.115;
+    k.shL.position.set(0.195, 0.495, -0.005); k.shR.position.set(-0.195, 0.495, -0.005);
+    k.elL.position.y = -0.29; k.elR.position.y = -0.29;
+    k.hipL.position.set(0.09, -0.02, 0); k.hipR.position.set(-0.09, -0.02, 0);
+    k.knL.position.y = -0.44; k.knR.position.y = -0.44; k.anL.position.y = -0.43; k.anR.position.y = -0.43;
+
+    // ---------------- people
+    this.people = [];
+    const half = LAYOUT.alleyHalf;
+    const pick = a => a[(R() * a.length) | 0];
+    for (let i = 0; i < N; i++) {
+      const A = ARCH[i % ARCH.length];
+      const p = { i, A };
+      p.fem = A.n === 'violetCoat' || A.n === 'cropWide' ? R() < 0.85 : R() < 0.4;
+      p.h = (p.fem ? 0.86 : 0.9) + R() * 0.08;
+      p.w = (p.fem ? 0.9 : 1.0) + (R() - 0.3) * 0.14;
+      const r = R();
+      p.mode = r < 0.64 ? 'walk' : r < 0.84 ? 'browse' : 'chat';
+      p.path = 'alley';
+      if (p.mode === 'walk' && R() < 0.22) p.path = 'cross';
+      if (p.path === 'alley') {
+        p.z = R() < 0.55 ? 1.8 - R() * 18 : -10 - R() * 40;
+        p.x = (R() * 2 - 1) * (half - 1.6);
+        if (p.mode === 'browse') p.x = Math.sign(R() - 0.5) * (half - 0.9 - R() * 0.6);
+      } else {
+        p.z = R() < 0.5 ? 1.95 + R() * 0.5 : 9.6 + R() * 0.8;
+        p.x = (R() * 2 - 1) * 38;
+      }
+      p.homeX = p.x; p.dir = R() < 0.5 ? 1 : -1;
+      p.speed = p.mode === 'walk' ? 0.85 + R() * 0.7 : 0;
+      p.stride = 0.85 + R() * 0.3;
+      p.phase = R() * Math.PI * 2;
+      p.yaw = p.path === 'alley' ? (p.dir > 0 ? 0 : Math.PI) : (p.dir > 0 ? Math.PI / 2 : -Math.PI / 2);
+      if (p.mode === 'browse') p.yaw = p.x > 0 ? Math.PI / 2 : -Math.PI / 2;
+      p.vx = 0; p.vz = 0; p.headYaw = 0; p.headPitch = 0; p.seed = R() * 10;
+      p.evacStart = 0.36 + R() * 0.34;
+      p.react = R();          // reaction delay to the emergency signal
+      p.lane = Math.abs(p.x) < 2.55 && p.path === 'alley';
+      p.evacX = Math.sign(p.x || (R() - 0.5)) * (2.75 + R() * 1.45);
+      p.arm = R() < 0.14 ? 'phone' : R() < 0.24 ? 'pocket' : 'swing';
+      // outfit
+      const legs = pick(A.legs);
+      const o = p.o = [];
+      const top = pick(A.top);
+      o.push(top);
+      if (A.inner && R() < 0.8) o.push(A.inner);
+      if (A.extra) o.push(...A.extra);
+      if (A.skirt) o.push(A.skirt);
+      o.push(top === 'tee' ? 'uaFit' : top === 'hoodie' ? 'uaHood' : A.ua);
+      o.push(top === 'tee' ? (R() < 0.5 ? 'faSkin' : 'faFit') : top === 'hoodie' ? 'faHood' : A.fa);
+      o.push('hand', 'head', 'neck');
+      if (legs === 'skirt') o.push('skirt', 'thTights', 'shTights');
+      else if (legs === 'tights') o.push('thTights', 'shTights');
+      else if (legs === 'wide') o.push('hips', 'thWide', 'shWide');
+      else if (legs === 'cargo') o.push('hips', 'thCargo', 'shCargo', 'pocket');
+      else o.push('hips', 'thSlim', 'shSlim');
+      o.push(pick(A.shoes));
+      const hair = pick(A.hair); o.push(hair);
+      const acc = pick(A.acc); if (acc) o.push(acc);
+      if (R() < 0.12 && !o.includes('glasses')) o.push('glasses');
+      if (o.includes('shopBag')) p.arm = 'carry';
+      const tint = c => new THREE.Color(c).offsetHSL(0, (R() - 0.5) * 0.05, (R() - 0.5) * 0.04);
+      const C = p.c = {
+        top: tint(pick(A.top0)), bottom: tint(pick(A.bottom)), skin: new THREE.Color(pick(SKIN)), hair: new THREE.Color(pick(HAIR)),
+        shoe: new THREE.Color(pick(SHOE)), acc: tint(pick([0x111114, 0x2a2233, 0x6b4a2b, 0xd9d2c5, 0x3b1d5c])), metal: new THREE.Color(pick([0xc0c4cc, 0xb8a27a, 0x8f8a99])),
+        inner: tint(pick([0xe8e4dc, 0x111114, 0x6f6a85, 0x2b2b33])), tights: new THREE.Color(pick([0x0e0e12, 0x1b1820, 0x2a2233])), bag: tint(pick([0xe9e3d5, 0x111114, 0x5b2a7a, 0xb8a27a])),
+      };
+      p.colorOf = name => {
+        if (['tee'].includes(name) && A.inner) return C.inner;
+        if (['tee', 'jacketOS', 'coatTop', 'hoodie', 'crop', 'hood', 'coatSkirt', 'uaFit', 'uaLeather', 'uaWide', 'uaHood', 'uaCoat', 'faFit', 'faLeather', 'faWide', 'faHood', 'faCoat'].includes(name)) return C.top;
+        if (['hips', 'thSlim', 'thWide', 'thCargo', 'shSlim', 'shWide', 'shCargo', 'pocket', 'skirt'].includes(name)) return name === 'skirt' ? C.bottom : C.bottom;
+        if (['thTights', 'shTights'].includes(name)) return C.tights;
+        if (['hand', 'head', 'neck', 'faSkin'].includes(name)) return C.skin;
+        if (name.startsWith('hair')) return C.hair;
+        if (name === 'beanie') return C.acc;
+        if (['sneaker', 'boot'].includes(name)) return C.shoe;
+        if (['glasses', 'watch'].includes(name)) return C.metal;
+        if (name === 'shopBag') return C.bag;
+        return C.acc;
+      };
+      this.people.push(p);
+    }
+    for (let i = 0; i < N - 1; i++) {
+      const a = this.people[i];
+      if (a.mode === 'chat' && !a.partner) {
+        const b = this.people[i + 1];
+        b.mode = 'chat'; b.speed = 0; a.partner = b; b.partner = a;
+        b.x = a.x + 0.75; b.z = a.z + 0.15; b.homeX = b.x; b.lane = a.lane; b.evacX = a.evacX + Math.sign(a.evacX) * 0.6; b.evacStart = a.evacStart + 0.02;
+        a.yaw = Math.PI / 2; b.yaw = -Math.PI / 2;
+      }
+    }
+    // assign instance slots + colors
+    this.slots = this.people.map(p => {
+      const list = [];
+      for (const name of p.o) {
+        const part = this.parts[name];
+        if (!part) continue;
+        if (part.two) {
+          for (let s = 0; s < 2; s++) { part.im.setColorAt(p.i * 2 + s, p.colorOf(name)); }
+        } else part.im.setColorAt(p.i, p.colorOf(name));
+        list.push(name);
+      }
+      return list;
+    });
+    this.zero = new THREE.Matrix4().makeScale(0, 0, 0);
+    for (const part of Object.values(this.parts)) {
+      for (let j = 0; j < part.im.count; j++) part.im.setMatrixAt(j, this.zero);
+      if (part.im.instanceColor) part.im.instanceColor.needsUpdate = true;
+    }
+    this.tmp = new THREE.Matrix4();
+    this.links = null;
+  }
+
+  update(dt, time, ctx) {
+    dt = Math.min(dt, 0.05);
+    const k = this.k, half = LAYOUT.alleyHalf;
+    const cam = ctx.camPos || new THREE.Vector3(0, 10, 10);
+    const PP = this.people;
+    // ---------------- steering (separation / crowd avoidance)
+    for (let i = 0; i < this.count; i++) {
+      const a = PP[i]; a.ax = 0; a.az = 0;
+    }
+    for (let i = 0; i < this.count; i++) {
+      const a = PP[i];
+      for (let j = i + 1; j < this.count; j++) {
+        const b = PP[j];
+        const dx = b.x - a.x, dz = b.z - a.z;
+        if (Math.abs(dx) > 0.7 || Math.abs(dz) > 0.7) continue;
+        const d = Math.hypot(dx, dz);
+        if (d < 0.62 && d > 0.0001 && a.partner !== b) {
+          const f = (0.62 - d) / 0.62 * 1.6;
+          a.ax -= dx / d * f; a.az -= dz / d * f; b.ax += dx / d * f; b.az += dz / d * f;
+        }
+      }
+    }
+    const alert = ctx.alert || 0;
+    for (let i = 0; i < this.count; i++) {
+      const p = PP[i];
+      // ---------------- locomotion targets
+      let tvx = 0, tvz = 0;
+      const reacting = alert > 0.05 + p.react * 0.6;
+      if (p.path === 'cross') {
+        tvx = p.dir * p.speed;
+        if (p.x > 40) p.x = -40; if (p.x < -40) p.x = 40;
+      } else {
+        const e = p.lane ? ctx.evac(p) : 0;
+        const tx = p.lane ? p.homeX + (p.evacX - p.homeX) * e : p.homeX;
+        const dx = tx - p.x;
+        tvx = Math.abs(dx) > 0.03 ? Math.max(-1.35, Math.min(1.35, dx * 2.0)) : 0;
+        const stepping = Math.min(1, Math.abs(tvx) / 0.55);
+        if (p.mode === 'walk') {
+          // when the signal is noticed: slow down, stop, then step aside
+          const hesitate = reacting && p.lane ? Math.max(0, 1 - stepping * 1.5) : 0;
+          tvz = p.dir * p.speed * (1 - 0.85 * stepping) * (1 - 0.9 * hesitate);
+          if (p.z > 1.9 && p.dir > 0) { p.path = 'cross'; p.z = 1.95 + this.R() * 0.5; p.dir = this.R() < 0.5 ? 1 : -1; p.homeX = p.x; }
+          if (p.z < -58) p.dir = 1;
+        }
+        if (ctx.ambulance && ctx.ambulance.active && p.lane) {
+          if (Math.abs(p.z - ctx.ambulance.z) < 4 && Math.abs(p.x) < 1.4) tvx += Math.sign(p.x || 1) * 1.2;
+        }
+      }
+      if (p.path === 'cross' && p.mode === 'walk' && Math.abs(p.x) < 0.8 && p.z < 2.6 && this.R() < 0.004) {
+        p.path = 'alley'; p.dir = -1; p.homeX = p.x; p.lane = Math.abs(p.x) < 2.55;
+      }
+      tvx += p.ax; tvz += p.az * 0.6;
+      const a = 1 - Math.exp(-dt * 4.5);
+      p.vx += (tvx - p.vx) * a; p.vz += (tvz - p.vz) * a;
+      p.x += p.vx * dt; p.z += p.vz * dt;
+      if (p.path === 'alley') p.x = Math.max(-half + 0.45, Math.min(half - 0.45, p.x));
+      const sp = Math.hypot(p.vx, p.vz);
+      let ty = p.yaw;
+      if (sp > 0.12) ty = Math.atan2(p.vx, p.vz);
+      else if (p.mode === 'browse') ty = p.x > 0 ? Math.PI / 2 : -Math.PI / 2;
+      else if (p.partner) ty = Math.atan2(p.partner.x - p.x, p.partner.z - p.z);
+      let d = ty - p.yaw; while (d > Math.PI) d -= Math.PI * 2; while (d < -Math.PI) d += Math.PI * 2;
+      p.yaw += d * Math.min(1, dt * (sp > 0.12 ? 3.2 : 1.6));
+      const g = Math.min(1, sp / 1.15);
+      p.phase += dt * (sp > 0.06 ? (1.6 + sp * 3.6 / p.stride) : 0);
+
+      // ---------------- LOD
+      const dist = Math.hypot(p.x - cam.x, p.z - cam.z, cam.y);
+      const far = dist > 78, mid = dist > 36;
+
+      // ---------------- head look (signal / partner / idle)
+      let look = Math.sin(time * 0.35 + p.seed) * (p.mode === 'walk' ? 0.18 : 0.4);
+      if (reacting) {
+        const tx = Math.abs(p.x) < 1.95 ? Math.sign(p.x || 1) * LAYOUT.rowX : -Math.sign(p.x) * LAYOUT.rowX;
+        let la = Math.atan2(tx - p.x, -2 - p.z) - p.yaw;
+        if (ctx.ambulance && ctx.ambulance.show) la = Math.atan2(ctx.ambulance.x - p.x, ctx.ambulance.z - p.z) - p.yaw;
+        while (la > Math.PI) la -= Math.PI * 2; while (la < -Math.PI) la += Math.PI * 2;
+        look = Math.max(-1.1, Math.min(1.1, la));
+      }
+      p.headYaw += (look - p.headYaw) * Math.min(1, dt * 3);
+
+      // ---------------- pose (natural gait)
+      const s = Math.sin(p.phase), c = Math.cos(p.phase);
+      const A = 0.48 * g * p.stride;
+      const breath = Math.sin(time * 1.6 + p.seed) * 0.012;
+      k.root.position.set(p.x, 0, p.z);
+      k.root.rotation.set(0, p.yaw, 0);
+      k.root.scale.set(p.h * p.w, p.h, p.h * p.w);
+      k.pelvis.position.set(0.024 * g * s, 0.955 - 0.012 * g + 0.024 * g * Math.cos(2 * p.phase), 0);
+      k.pelvis.rotation.set(0, 0.13 * g * s, 0.04 * g * c);
+      k.torso.rotation.set(0.03 + 0.07 * g + breath, -0.22 * g * s, -0.035 * g * c);
+      k.neck.rotation.set(-0.04 * g, 0.09 * g * s, 0);
+      k.head.rotation.set((p.arm === 'phone' && !reacting ? 0.42 : 0.0) + 0.03 * Math.sin(2 * p.phase) * g, p.headYaw * 0.75, 0);
+      k.neck.rotation.y += p.headYaw * 0.25;
+      k.hipL.rotation.set(-A * s - 0.04 * g, 0, -0.02);
+      k.hipR.rotation.set(A * s - 0.04 * g, 0, 0.02);
+      k.knL.rotation.set(0.06 + g * (0.95 * Math.pow(Math.max(0, Math.sin(p.phase + 1.25)), 1.4) + 0.08), 0, 0);
+      k.knR.rotation.set(0.06 + g * (0.95 * Math.pow(Math.max(0, Math.sin(p.phase + 1.25 + Math.PI)), 1.4) + 0.08), 0, 0);
+      k.anL.rotation.set(-g * 0.28 * Math.sin(p.phase + 0.5), 0, 0);
+      k.anR.rotation.set(g * 0.28 * Math.sin(p.phase + 0.5), 0, 0);
+      const wide = p.o.includes('jacketOS') || p.o.includes('hoodie') ? 0.14 : 0.09;
+      let aL = 0.42 * g * s + 0.04, aR = -0.42 * g * s + 0.04;
+      let eL = -(0.18 + 0.12 * g + 0.45 * g * Math.max(0, -s)), eR = -(0.18 + 0.12 * g + 0.45 * g * Math.max(0, s));
+      if (p.arm === 'phone' && !reacting) { aR = -0.5; eR = -1.45; }
+      if (p.arm === 'pocket') { aL = aR = 0.16; eL = eR = -0.55; }
+      if (p.arm === 'carry') { aR = 0.06 * g * s; eR = -0.08; }
+      if (p.mode === 'chat') { aR = -0.25 + Math.sin(time * 1.7 + p.seed) * 0.16; eR = -0.95 + Math.sin(time * 2.3 + p.seed) * 0.2; }
+      if (reacting && sp < 0.2 && p.lane) { aL = 0.05; aR = 0.05; eL = eR = -0.25; }
+      k.shL.rotation.set(aL, 0, wide); k.shR.rotation.set(aR, 0, -wide);
+      k.elL.rotation.set(eL, 0, 0); k.elR.rotation.set(eR, 0, 0);
+      k.root.updateMatrixWorld(true);
+
+      const boneOf = (b, side) => {
+        switch (b) {
+          case 'torso': return k.torso; case 'pelvis': return k.pelvis; case 'head': return k.head; case 'neck': return k.neck;
+          case 'sh': return side ? k.shR : k.shL; case 'el': return side ? k.elR : k.elL;
+          case 'hip': return side ? k.hipR : k.hipL; case 'kn': return side ? k.knR : k.knL; case 'an': return side ? k.anR : k.anL;
+          case 'elL': return k.elL; case 'elR': return k.elR;
+        }
+        return k.torso;
+      };
+      for (const name of this.slots[i]) {
+        const part = this.parts[name];
+        const hide = far || (mid && part.lod);
+        if (part.two) {
+          part.im.setMatrixAt(i * 2, hide ? this.zero : boneOf(part.bone, 0).matrixWorld);
+          part.im.setMatrixAt(i * 2 + 1, hide ? this.zero : boneOf(part.bone, 1).matrixWorld);
+        } else part.im.setMatrixAt(i, hide ? this.zero : boneOf(part.bone).matrixWorld);
+      }
+      this.tmp.makeTranslation(p.x, 0, p.z);
+      this.shadow.setMatrixAt(i, far ? this.zero : this.tmp);
+    }
+    for (const part of Object.values(this.parts)) part.im.instanceMatrix.needsUpdate = true;
+    this.shadow.instanceMatrix.needsUpdate = true;
+  }
+}
+
+return { Crowd };
+})();
+
+// ---- js3d/scenes/CityLite.js
+const __m_js3d_scenes_CityLite_js = (() => {
+const { Batch, mat, atlasPlane, rng } = __m_js3d_core_batch_js;
+const { LAYOUT, COLORS, QUALITY } = __m_js3d_config_settings_js;
+const { makeFacades, SignAtlas, SIGN_STYLES, SHOP_WORDS, BLADE_WORDS, STALL_MENU, makePaving } = __m_js3d_components_CityTextures_js;
+const { Crowd } = __m_js3d_components_Crowd_js;
+
+
+
+
+
+
+/*
+ * CityScene — 2030 명동 보행자 골목 + 교차로 입구
+ * 골목(폭 12.4m)은 -Z 방향으로 이어지고, z=1.6~10.6 구간이 골목 바깥 교차 도로입니다.
+ * 제품은 골목 진입부 양측(x=±1.95)에 동일 방향·일정 간격으로 일렬 배치됩니다.
+ */
+class CityLite {
+  constructor(renderer) {
+    this.renderer = renderer;
+    const scene = this.scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x07040f);
+    scene.fog = new THREE.FogExp2(0x0d0618, 0.019);
+    scene.environment = this._neonEnv(renderer);
+    this.R = rng(42);
+    this.time = 0;
+
+    this._ground();
+    this._buildings();
+    this._lights();
+    this._screens();
+    this.crowd = new Crowd(scene, QUALITY.people);
+  }
+
+  // dark environment with a few neon panels → believable reflections on metal/paint
+  _neonEnv(renderer) {
+    const env = new THREE.Scene();
+    env.background = new THREE.Color(0x020203);
+    const panel = (c, i, x, y, z, w, h, ry) => {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(c).multiplyScalar(i), side: THREE.DoubleSide }));
+      m.position.set(x, y, z); m.rotation.y = ry; env.add(m);
+    };
+    panel(0x9b5cff, 1.4, -8, 3, 0, 3, 6, Math.PI / 2);
+    panel(0x5f7dff, 1.1, 8, 4, -4, 2, 8, -Math.PI / 2);
+    panel(0xd9ccff, 1.5, 0, 9, 0, 14, 1.2, 0);
+    panel(0xb45cff, 1.3, 0, 2, -9, 10, 1.5, 0);
+    panel(0xffb08a, 0.5, -6, 2, 6, 3, 2, Math.PI / 3);
+    panel(0xffffff, 0.45, 0, 10, 8, 10, 4, Math.PI);
+    const pm = new THREE.PMREMGenerator(renderer);
+    const t = pm.fromScene(env, 0.02).texture;
+    pm.dispose();
+    return t;
+  }
+
+  _ground() {
+    const { map, rough } = makePaving();
+    const W = 150, D = 120, cz = -30;
+    map.repeat.set(W / 4.8, D / 4.8); rough.repeat.copy(map.repeat);
+    if (QUALITY.reflector) {
+      const ref = new Reflector(new THREE.PlaneGeometry(W, D), {
+        textureWidth: Math.round(innerWidth * 0.5), textureHeight: Math.round(innerHeight * 0.5),
+        color: 0x7c7690, clipBias: 0.003,
+      });
+      ref.rotation.x = -Math.PI / 2; ref.position.set(0, -0.002, cz);
+      this.scene.add(ref);
+      this.reflector = ref;
+    }
+    const gmat = new THREE.MeshStandardMaterial({
+      map, roughnessMap: rough, roughness: 1, metalness: 0.12, color: 0xaaa6bc,
+      transparent: QUALITY.reflector, opacity: QUALITY.reflector ? 0.84 : 1, envMapIntensity: 0.6,
+    });
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(W, D), gmat);
+    ground.rotation.x = -Math.PI / 2; ground.position.set(0, 0.0, cz);
+    ground.receiveShadow = true;
+    this.scene.add(ground);
+    // curbs along the outer street (pedestrian alley has no curb)
+    const B = new Batch();
+    const curb = new THREE.BoxGeometry(1, 0.12, 0.3);
+    for (const z of [LAYOUT.crossZ0 + 0.15, LAYOUT.crossZ1 - 0.15]) {
+      B.add('stone', curb, mat(-36, 0.06, z, 0, 0, 0, 60, 1, 1), 0x3a3a42);
+      B.add('stone', curb, mat(36, 0.06, z, 0, 0, 0, 60, 1, 1), 0x3a3a42);
+    }
+    this.groundBatch = B;
+  }
+
+  _buildings() {
+    const R = this.R;
+    const B = this.groundBatch || new Batch();
+    const atlas = this.atlas = new SignAtlas(2048);
+    atlas.prepare(SHOP_WORDS, BLADE_WORDS, STALL_MENU, SIGN_STYLES);
+    const facades = makeFacades(9);
+    const facadeMats = [];
+    const half = LAYOUT.alleyHalf;
+    const group = this.buildingGroup = new THREE.Group();
+    this.scene.add(group);
+    const lampPos = [];
+
+    const pick = a => a[(R() * a.length) | 0];
+    const signMatFor = () => pick(SIGN_STYLES);
+
+    const building = (cx, cz, ry, frontW, depth, h, opts = {}) => {
+      const M = mat(cx, 0, cz, ry);
+      const L = (x, y, z, rx = 0, ryy = 0, rz = 0, sx = 1, sy = 1, sz = 1) => M.clone().multiply(mat(x, y, z, ryy, rx, rz, sx, sy, sz));
+      const fz = depth / 2;
+      const gf = 4.6;
+      // ---- textured upper body
+      const f = pick(facades);
+      const m = new THREE.MeshStandardMaterial({ map: f.map.clone(), emissiveMap: f.emissive.clone(), emissive: 0xffffff, emissiveIntensity: 1.25, roughness: 0.72, metalness: 0.22, envMapIntensity: 0.5 });
+      m.map.repeat.set(frontW / 12, (h - gf) / 14.4); m.map.offset.set(R(), R());
+      m.emissiveMap.repeat.copy(m.map.repeat); m.emissiveMap.offset.copy(m.map.offset);
+      m.map.needsUpdate = m.emissiveMap.needsUpdate = true;
+      facadeMats.push(m);
+      const bodyMesh = new THREE.Mesh(new THREE.BoxGeometry(frontW, h - gf, depth), m);
+      bodyMesh.position.set(0, gf + (h - gf) / 2, 0);
+      const holder = new THREE.Group(); holder.position.set(cx, 0, cz); holder.rotation.y = ry; holder.add(bodyMesh);
+      group.add(holder);
+      // ---- ground floor
+      B.add('stone', new THREE.BoxGeometry(frontW, gf, depth - 1.2), L(0, gf / 2, -0.6), 0x26262c);
+      const nShops = frontW > 7 ? 2 : 1;
+      const sw = frontW / nShops;
+      for (let s = 0; s < nShops; s++) {
+        const sx = -frontW / 2 + sw * (s + 0.5);
+        // pillars
+        B.add('stone', new THREE.BoxGeometry(0.42, gf, 0.5), L(-frontW / 2 + sw * s + 0.21, gf / 2, fz - 0.25), 0x3b3a3f);
+        // interior lightbox seen through glass
+        const ir = atlas.interior((R() * 1e6) | 0);
+        B.add('signs', atlasPlane(sw - 0.6, 3.2, ir), L(sx, 1.75, fz - 1.15), 0xffffff);
+        // glass + mullions
+        B.add('glass', new THREE.PlaneGeometry(sw - 0.6, 3.5), L(sx, 1.85, fz - 0.55), 0xffffff);
+        B.add('metal', new THREE.BoxGeometry(sw - 0.5, 0.08, 0.12), L(sx, 3.62, fz - 0.5), 0x1b1b20);
+        B.add('metal', new THREE.BoxGeometry(0.06, 3.5, 0.1), L(sx + (R() - 0.5) * 0.6, 1.85, fz - 0.5), 0x1b1b20);
+        // door frame
+        B.add('metal', new THREE.BoxGeometry(1.4, 2.5, 0.08), L(sx + sw * 0.2, 1.25, fz - 0.52), 0x101014);
+        // sign band
+        const word = pick(SHOP_WORDS);
+        const r = atlas.band(word, signMatFor());
+        B.add('metal', new THREE.BoxGeometry(sw - 0.2, 0.9, 0.3), L(sx, 4.15, fz + 0.1), 0x0d0d10);
+        B.add('signs', atlasPlane(sw - 0.4, 0.75, r), L(sx, 4.15, fz + 0.26), 0xffffff);
+        // awning
+        if (R() < 0.35) {
+          const ac = pick([0x7a1d24, 0x1f2b45, 0x2b2b2e, 0x4a3b2a]);
+          B.add('canopy', new THREE.BoxGeometry(sw - 0.4, 0.06, 1.3), L(sx, 3.45, fz + 0.55, 0.32), ac);
+        }
+        lampPos.push(new THREE.Vector3(sx, 3.4, fz + 0.4).applyMatrix4(M));
+      }
+      B.add('stone', new THREE.BoxGeometry(frontW + 0.2, 0.32, 0.6), L(0, gf + 0.16, fz + 0.05), 0x34343a);
+      // ---- upper details
+      const floors = Math.floor((h - gf) / 3.6);
+      for (let fl = 1; fl < floors; fl++) {
+        if (R() < 0.55) B.add('stone', new THREE.BoxGeometry(frontW + 0.12, 0.14, 0.24), L(0, gf + fl * 3.6, fz + 0.1), 0x2c2c32);
+      }
+      // corner pilasters
+      B.add('stone', new THREE.BoxGeometry(0.3, h - gf, 0.25), L(-frontW / 2 + 0.15, gf + (h - gf) / 2, fz + 0.1), 0x2a2a30);
+      B.add('stone', new THREE.BoxGeometry(0.3, h - gf, 0.25), L(frontW / 2 - 0.15, gf + (h - gf) / 2, fz + 0.1), 0x2a2a30);
+      // parapet + rooftop
+      B.add('stone', new THREE.BoxGeometry(frontW, 0.9, depth), L(0, h + 0.45, 0, 0, 0, 0, 1, 1, 1), 0x1d1d22);
+      if (R() < 0.6) B.add('metal', new THREE.CylinderGeometry(0.9, 0.9, 1.8, 14), L((R() - 0.5) * frontW * 0.5, h + 1.8, -depth * 0.2), 0x55565c);
+      if (R() < 0.5) B.add('metal', new THREE.BoxGeometry(2.2, 1.4, 1.6), L((R() - 0.5) * frontW * 0.4, h + 1.6, -depth * 0.1), 0x3d3e44);
+      // rooftop billboard
+      if (opts.billboard || R() < 0.25) {
+        const r = atlas.band(pick(SHOP_WORDS), signMatFor());
+        const bw = Math.min(frontW - 0.5, 7);
+        B.add('metal', new THREE.BoxGeometry(bw + 0.2, bw * 0.19 + 0.2, 0.25), L(0, h + 2.6, fz - 0.6), 0x111114);
+        B.add('signs', atlasPlane(bw, bw * 0.19, r), L(0, h + 2.6, fz - 0.46), 0xffffff);
+        for (const sx of [-bw / 3, bw / 3]) B.add('metal', new THREE.BoxGeometry(0.1, 2.0, 0.1), L(sx, h + 1.2, fz - 0.6), 0x222226);
+      }
+      // vertical blade signs (perpendicular to the facade)
+      const nb = (R() * 2.4) | 0;
+      for (let b = 0; b < nb; b++) {
+        const bx = -frontW / 2 + 0.8 + R() * (frontW - 1.6);
+        const by = gf + 2.6 + R() * Math.max(0.5, Math.min(10, h - gf - 7));
+        const r = atlas.blade(pick(BLADE_WORDS), signMatFor());
+        const bh = 4.2, bw = 0.92;
+        B.add('metal', new THREE.BoxGeometry(0.2, bh + 0.15, bw + 0.1), L(bx, by, fz + bw / 2 + 0.35), 0x0c0c0f);
+        B.add('signs', atlasPlane(bw, bh, r), L(bx + 0.106, by, fz + bw / 2 + 0.35, 0, Math.PI / 2, 0), 0xffffff);
+        B.add('signs', atlasPlane(bw, bh, r), L(bx - 0.106, by, fz + bw / 2 + 0.35, 0, -Math.PI / 2, 0), 0xffffff);
+        B.add('metal', new THREE.BoxGeometry(0.06, 0.06, 0.4), L(bx, by + bh / 2 - 0.2, fz + 0.2), 0x222226);
+        B.add('metal', new THREE.BoxGeometry(0.06, 0.06, 0.4), L(bx, by - bh / 2 + 0.2, fz + 0.2), 0x222226);
+      }
+      // AC units, pipes, small lights
+      const nac = (R() * 4) | 0;
+      for (let a = 0; a < nac; a++) {
+        const ax = -frontW / 2 + 0.8 + R() * (frontW - 1.6), ay = gf + 1.2 + ((R() * floors) | 0) * 3.6;
+        B.add('metal', new THREE.BoxGeometry(0.82, 0.62, 0.34), L(ax, ay, fz + 0.3), 0x9a9ca2);
+        B.add('stone', new THREE.CylinderGeometry(0.22, 0.22, 0.02, 16), L(ax + 0.12, ay, fz + 0.48, Math.PI / 2), 0x222226);
+        B.add('metal', new THREE.BoxGeometry(0.7, 0.04, 0.4), L(ax, ay - 0.33, fz + 0.3), 0x55565c);
+      }
+      const px = (R() < 0.5 ? -1 : 1) * (frontW / 2 - 0.45);
+      B.add('metal', new THREE.CylinderGeometry(0.055, 0.055, h, 8), L(px, h / 2, fz + 0.2), 0x4a4a50);
+      B.add('metal', new THREE.CylinderGeometry(0.035, 0.035, h - gf, 8), L(px + 0.16, gf + (h - gf) / 2, fz + 0.18), 0x3a3a40);
+      for (let y = gf + 1.5; y < h; y += 3.6) B.add('metal', new THREE.BoxGeometry(0.3, 0.05, 0.25), L(px + 0.08, y, fz + 0.12), 0x2a2a30);
+      for (let l = 0; l < 3; l++) if (R() < 0.6) B.add('lamp', new THREE.BoxGeometry(0.14, 0.06, 0.08), L(-frontW / 2 + R() * frontW, gf + 0.9 + R() * (h - gf - 2), fz + 0.06), 0xffffff);
+    };
+
+    // alley — left (front faces +x) and right (front faces -x)
+    for (const side of [-1, 1]) {
+      let z = LAYOUT.crossZ0;
+      let i = 0;
+      while (z > -78) {
+        const w = 5.5 + R() * 4;
+        const h = 12 + R() * 22 + (i === 0 ? 6 : 0);
+        const depth = 14;
+        const cz = z - w / 2;
+        building(side * (half + depth / 2), cz, side < 0 ? Math.PI / 2 : -Math.PI / 2, w, depth, h, { billboard: i === 0 });
+        z -= w + 0.05; i++;
+      }
+    }
+    // outer street — near side (front +z) and far side (front -z)
+    for (const side of [-1, 1]) {
+      let x = side * (half + 14.1);
+      for (let i = 0; i < 6; i++) {
+        const w = 7 + R() * 5;
+        const h = 14 + R() * 20;
+        const cx = x + side * w / 2;
+        building(cx, LAYOUT.crossZ0 - 7, 0, w, 14, h);
+        x += side * (w + 0.05);
+      }
+    }
+    {
+      let x = -60;
+      while (x < 60) {
+        const w = 7 + R() * 6;
+        building(x + w / 2, LAYOUT.crossZ1 + 7, Math.PI, w, 14, 14 + R() * 22, { billboard: Math.abs(x) < 10 });
+        x += w + 0.05;
+      }
+    }
+
+    // pojangmacha (street stalls) along both edges of the alley
+    this.stallPos = [];
+    for (let i = 0; i < 15; i++) {
+      const z = -6.0 - i * 3.3;
+      for (const side of [-1, 1]) this._stall(B, side * (half - 3.6), z, side, atlas, i === 0 && side < 0);
+    }
+
+    // cables crossing the alley (catenaries)
+    const pts = [];
+    for (let k = 0; k < 34; k++) {
+      const z = 1 - R() * 70, y0 = 5 + R() * 5, y1 = y0 + (R() - 0.5) * 1.5, sag = 0.4 + R() * 0.8, dz = (R() - 0.5) * 3;
+      let prev = null;
+      for (let s = 0; s <= 16; s++) {
+        const t = s / 16;
+        const p = new THREE.Vector3(-half + t * half * 2, y0 + (y1 - y0) * t - Math.sin(Math.PI * t) * sag, z + dz * t);
+        if (prev) pts.push(prev, p);
+        prev = p;
+      }
+    }
+    const wires = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0x24232b, fog: true }));
+    this.scene.add(wires);
+
+    // materials for batched geometry
+    this.atlasTex = atlas.texture();
+    const materials = {
+      stone: new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.85, metalness: 0.05, envMapIntensity: 0.4 }),
+      metal: new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.48, metalness: 0.65, envMapIntensity: 0.8 }),
+      glass: new THREE.MeshPhysicalMaterial({ color: 0x1a2030, roughness: 0.04, metalness: 0.3, transparent: true, opacity: 0.32, clearcoat: 1, envMapIntensity: 1.4, depthWrite: false }),
+      signs: new THREE.MeshBasicMaterial({ map: this.atlasTex, color: new THREE.Color(1.3, 1.22, 1.38), toneMapped: false }),
+      lamp: new THREE.MeshBasicMaterial({ color: new THREE.Color(3, 2.6, 2.1), toneMapped: false }),
+      bulb: new THREE.MeshBasicMaterial({ color: new THREE.Color(4, 2.8, 1.4), toneMapped: false }),
+      canopy: new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.75, side: THREE.DoubleSide }),
+      stall: new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.6, metalness: 0.25 }),
+    };
+    B.build(materials, this.scene, { cast: false, receive: true });
+    this.lampPos = lampPos;
+  }
+
+  _stall(B, x, z, side, atlas, hero = false) {
+    const R = this.R;
+    const ry = side < 0 ? Math.PI / 2 : -Math.PI / 2;  // counter faces the alley center
+    const M = mat(x, 0, z, ry);
+    if (hero) this.anchor = { x, z, ry };
+    this.stallPos.push({ x, z, side, hero });
+    const L = (px, py, pz, rx = 0, r2 = 0, rz = 0) => M.clone().multiply(mat(px, py, pz, r2, rx, rz));
+    const W = 2.6, D = 1.5;
+    const tarp = [0xb4262f, 0x1f4fa6, 0xd2691e, 0x2f7a4c, 0xc9a227][(R() * 5) | 0];
+    // cart body + wheels
+    B.add('stall', new THREE.BoxGeometry(W, 0.9, D), L(0, 0.55, 0), 0x9aa0a6);
+    B.add('stall', new THREE.BoxGeometry(W + 0.06, 0.06, D + 0.06), L(0, 1.02, 0), 0xd8dade);
+    B.add('stall', new THREE.BoxGeometry(W - 0.2, 0.3, 0.04), L(0, 0.55, D / 2 + 0.01), tarp);
+    for (const wx of [-W / 2 + 0.3, W / 2 - 0.3]) B.add('stone', new THREE.CylinderGeometry(0.16, 0.16, 0.08, 14), L(wx, 0.16, D / 2 - 0.02, Math.PI / 2), 0x111113);
+    // posts + canopy
+    for (const [px, pz] of [[-W / 2, -D / 2], [W / 2, -D / 2], [-W / 2, D / 2 + 0.3], [W / 2, D / 2 + 0.3]]) B.add('stall', new THREE.CylinderGeometry(0.025, 0.025, 2.3, 6), L(px, 1.15 + 0.05, pz), 0x77797e);
+    B.add('canopy', new THREE.BoxGeometry(W + 0.5, 0.04, D + 1.0), L(0, 2.38, 0.15, 0.12), tarp);
+    for (let k = 0; k < 7; k++) B.add('canopy', new THREE.BoxGeometry((W + 0.5) / 7 - 0.02, 0.22, 0.02), L(-W / 2 - 0.25 + (k + 0.5) * (W + 0.5) / 7, 2.15, D / 2 + 0.66), k % 2 ? 0xf2efe8 : tarp);
+    // goods on the counter
+    for (let k = 0; k < 9; k++) {
+      const gc = [0xd8452b, 0xe0a33a, 0xf2e1c0, 0x7a3b1d, 0xc23b6e][(R() * 5) | 0];
+      if (hero && Math.abs(-W / 2 + 0.25 + k * 0.27) < 0.62) continue; // keep the table centre free for BRIDGE
+      B.add('stall', new THREE.BoxGeometry(0.18 + R() * 0.12, 0.05 + R() * 0.08, 0.16 + R() * 0.1), L(-W / 2 + 0.25 + k * 0.27, 1.08, (R() - 0.5) * 0.7), gc);
+    }
+    B.add('stall', new THREE.CylinderGeometry(0.22, 0.24, 0.12, 16), L(W / 2 - 0.45, 1.11, 0), 0x2a2a2e);
+    if (!hero) for (let k = 0; k < 6; k++) B.add('stall', new THREE.CylinderGeometry(0.008, 0.008, 0.4, 4), L(-0.4 + k * 0.08, 1.2, 0.3, 0.3), 0xc9a26b);
+    // menu board + bulbs
+    const [t, p] = STALL_MENU[(R() * STALL_MENU.length) | 0];
+    const r = atlas.menu(t, p, { bg: '#f7f2e6', fg: '#b4262f' });
+    B.add('signs', atlasPlane(1.1, 0.55, r), L(0, 1.85, D / 2 + 0.32), 0xffffff);
+    for (let k = 0; k < 4; k++) B.add('bulb', new THREE.SphereGeometry(0.055, 8, 6), L(-W / 2 + 0.3 + k * (W - 0.6) / 3, 2.1, 0.3), 0xffffff);
+    this.stallLights = this.stallLights || [];
+    this.stallLights.push(new THREE.Vector3(0, 2.0, 0.4).applyMatrix4(M));
+  }
+
+  _lights() {
+    const s = this.scene;
+    s.add(new THREE.HemisphereLight(0x3b2f6e, 0x050508, 0.75));
+    const moon = new THREE.DirectionalLight(0x7f78ff, 0.3);
+    moon.position.set(-20, 40, 10);
+    s.add(moon);
+    // shop / sign spill lights (few, warm & cool) — product purple is kept for the product only
+    const spots = [[-4.6, 3.2, -2, 0x8a6bff, 26], [4.8, 3.0, -9, 0xff7fb8, 18], [-4.7, 3.2, -16, 0x5a7dff, 24], [4.6, 3.4, -24, 0xffb070, 20], [-4.6, 3.2, -33, 0xa05cff, 24], [0, 7, 6, 0xc4b6ff, 34]];
+    spots.forEach(([x, y, z, c, i]) => { const l = new THREE.PointLight(c, i, 18, 1.6); l.position.set(x, y, z); s.add(l); });
+    // product key light (soft, cool) + violet rim → readable matte-plastic edges in close-ups
+    const key = new THREE.SpotLight(0xe8e6ff, 38, 14, 0.55, 1, 1.4); key.position.set(4.6, 3.8, 0.4); key.target.position.set(1.95, 0.25, -4.6); s.add(key, key.target);
+    const rim = new THREE.SpotLight(0xa45cff, 26, 12, 0.6, 1, 1.5); rim.position.set(-0.6, 1.4, -9); rim.target.position.set(1.95, 0.3, -3.2); s.add(rim, rim.target);
+    const rimL = new THREE.SpotLight(0x6f7dff, 18, 12, 0.6, 1, 1.5); rimL.position.set(0.6, 1.4, -9); rimL.target.position.set(-1.95, 0.3, -3.2); s.add(rimL, rimL.target);
+  }
+
+
+  // giant neon LED screens on the facades (reference mood: wet street, pink / purple / cyan billboards)
+  _screens() {
+    const half = LAYOUT.alleyHalf, R = this.R;
+    this.screens = [];
+    const WORDS = ['2030', 'MYEONGDONG', 'K-STREET', 'NIGHT MARKET', 'BRIDGE', 'TASTE', 'SEOUL', 'LIVE'];
+    const PAL = [['#ff2bd6', '#7628f5', '#29d9ff'], ['#7628f5', '#c25bff', '#ff4fa3'], ['#29d9ff', '#5a5cff', '#c5ff35'], ['#ff4fa3', '#ff2bd6', '#7628f5']];
+    const art = (k) => {
+      const c = document.createElement('canvas'); c.width = 1024; c.height = 512;
+      const g = c.getContext('2d'), pal = PAL[k % PAL.length];
+      const bg = g.createLinearGradient(0, 0, 1024, 512); bg.addColorStop(0, pal[0]); bg.addColorStop(0.55, pal[1]); bg.addColorStop(1, pal[2]);
+      g.fillStyle = bg; g.fillRect(0, 0, 1024, 512);
+      for (let i = 0; i < 9; i++) {                       // soft glowing shapes
+        g.globalAlpha = 0.18 + R() * 0.3; g.fillStyle = pal[(R() * 3) | 0];
+        g.beginPath(); g.arc(R() * 1024, R() * 512, 40 + R() * 150, 0, Math.PI * 2); g.fill();
+      }
+      g.globalAlpha = 0.5; g.lineWidth = 6; g.strokeStyle = '#ffffff';
+      for (let i = 0; i < 6; i++) { g.beginPath(); for (let x = 0; x <= 1024; x += 16) g.lineTo(x, 80 + i * 70 + Math.sin(x * 0.012 + i * 1.7 + k) * 36); g.stroke(); }
+      g.globalAlpha = 1; g.fillStyle = '#ffffff'; g.font = '900 150px Unbounded, Arial Black, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.shadowColor = pal[2]; g.shadowBlur = 40; g.fillText(WORDS[k % WORDS.length], 512, 256);
+      const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.MirroredRepeatWrapping; return t;
+    };
+    const spots = [[-1, -9], [-1, -25], [-1, -41], [1, -17], [1, -33], [1, -49]];
+    spots.forEach(([side, z], i) => {
+      const mat = new THREE.MeshBasicMaterial({ map: art(i), toneMapped: false, color: new THREE.Color(1.25, 1.25, 1.25) });
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(13, 6.4), mat);
+      m.position.set(side * (half - 0.3), 9.6, z); m.rotation.y = side < 0 ? Math.PI / 2 : -Math.PI / 2;
+      this.scene.add(m); this.screens.push(m);
+      const col = PAL[i % PAL.length][i % 2 ? 2 : 0];
+      const l = new THREE.PointLight(col, 26, 22, 1.6); l.position.set(side * (half - 3), 7.5, z); this.scene.add(l);
+    });
+  }
+
+  update(dt, camPos) {
+    this.time += dt;
+    for (const m of this.screens) m.material.map.offset.x += dt * 0.025;
+    this.crowd.update(dt, this.time, {
+      evac: () => 0, alert: 0, data: 0,
+      ambulance: { active: false, show: false, x: 0, z: 0 },
+      camPos,
+    });
+  }
+}
+
+return { CityLite };
+})();
+
+// ---- js3d/components/Actors.js
+const __m_js3d_components_Actors_js = (() => {
+
+
+/*
+ * Actors — two stylised hero figures (vendor, tourist) and the food tray.
+ * Same look as the crowd (mannequin-like, no face detail): readable silhouettes + a pair of eyes so that
+ * eye contact, head turns, nods and hand gestures can be seen. Limbs are pivot groups, posed from scroll progress.
+ * Local frame: +z is the way the figure faces, +y up. Height ≈ 1.75 m.
+ */
+const M = (color, o = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.68, metalness: 0.05, emissive: color, emissiveIntensity: 0.07, ...o });
+const mesh = (geo, mat, x = 0, y = 0, z = 0) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); return m; };
+const cap = (r, len, rs = 12) => new THREE.CapsuleGeometry(r, len, 5, rs);
+
+function makeFigure(o) {
+  const skin = M(o.skin), top = M(o.top), bottom = M(o.bottom), hair = M(o.hair, { roughness: 0.5 }), shoe = M(0x16161a), eye = new THREE.MeshBasicMaterial({ color: 0x0a0a0e });
+  const extra = o.extra ? M(o.extra) : null;
+  const mats = [skin, top, bottom, hair, shoe, eye]; if (extra) mats.push(extra);
+  const root = new THREE.Group();
+
+  // legs + shoes
+  for (const sx of [-1, 1]) {
+    root.add(mesh(new THREE.CylinderGeometry(0.075, 0.068, 0.86, 10), bottom, sx * 0.09, 0.45, 0));
+    root.add(mesh(new THREE.BoxGeometry(0.1, 0.06, 0.26), shoe, sx * 0.09, 0.03, 0.05));
+  }
+  // hips pivot → torso, head, arms (all lean together)
+  const body = new THREE.Group(); body.position.y = 0.88; root.add(body);
+  const torso = mesh(cap(0.17, 0.3), top, 0, 0.33, 0); torso.scale.z = 0.72; body.add(torso);
+  const head = new THREE.Group(); head.position.set(0, 0.66, 0); body.add(head);
+  head.add(mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.09, 8), skin, 0, 0.0, 0));
+  const skull = mesh(new THREE.SphereGeometry(0.112, 24, 18), skin, 0, 0.12, 0.005); skull.scale.set(0.92, 1.08, 1); head.add(skull);
+  const hairM = mesh(new THREE.SphereGeometry(0.119, 24, 18, 0, Math.PI * 2, 0, Math.PI * 0.62), hair, 0, 0.135, -0.012); hairM.scale.set(0.94, 1.0, 1.02); head.add(hairM);
+  for (const sx of [-1, 1]) head.add(mesh(new THREE.SphereGeometry(0.0125, 8, 6), eye, sx * 0.042, 0.135, 0.102));
+  if (o.cap) {                                            // vendor cap
+    head.add(mesh(new THREE.CylinderGeometry(0.122, 0.122, 0.05, 20), extra, 0, 0.215, -0.004));
+    const visor = mesh(new THREE.BoxGeometry(0.17, 0.012, 0.09), extra, 0, 0.2, 0.12); visor.rotation.x = 0.12; head.add(visor);
+  }
+  if (o.apron) { const ap = mesh(new THREE.BoxGeometry(0.3, 0.5, 0.02), extra, 0, 0.24, 0.125); body.add(ap); }
+  if (o.pack) { const pk = mesh(new THREE.BoxGeometry(0.3, 0.4, 0.15), extra, 0, 0.34, -0.17); body.add(pk); }
+
+  const arm = side => {
+    const sh = new THREE.Group(); sh.position.set(side * 0.215, 0.56, 0); body.add(sh);
+    sh.add(mesh(cap(0.047, 0.2), top, 0, -0.16, 0));
+    const el = new THREE.Group(); el.position.set(0, -0.31, 0); sh.add(el);
+    el.add(mesh(cap(0.04, 0.18), skin, 0, -0.14, 0));
+    el.add(mesh(new THREE.SphereGeometry(0.047, 10, 8), skin, 0, -0.3, 0));
+    const hold = new THREE.Group(); hold.position.set(0, -0.32, 0.03); el.add(hold);   // anchor for the food tray
+    return { sh, el, hold };
+  };
+  const L = arm(-1), R = arm(1);
+  return { root, body, head, shL: L.sh, elL: L.el, shR: R.sh, elR: R.el, holdL: L.hold, holdR: R.hold, mats };
+}
+
+// pose: { head:[rx,ry,rz], shL:[rx,rz], elL:[rx], shR:[rx,rz], elR:[rx], lean:[rx] }
+function applyPose(f, P) {
+  f.head.rotation.set(P.head[0], P.head[1], P.head[2]);
+  f.shL.rotation.set(P.shL[0], 0, P.shL[1]); f.elL.rotation.set(P.elL[0], 0, 0);
+  f.shR.rotation.set(P.shR[0], 0, P.shR[1]); f.elR.rotation.set(P.elR[0], 0, 0);
+  f.body.rotation.set(P.lean[0], P.lean[1] || 0, 0);
+}
+
+function makeFood() {
+  const g = new THREE.Group();
+  const tray = new THREE.MeshStandardMaterial({ color: 0xf2f0ea, roughness: 0.8 });
+  const base = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.03, 0.1), tray); g.add(base);
+  const walls = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.035, 0.11), tray); walls.position.y = 0.012; g.add(walls);
+  const food = new THREE.MeshStandardMaterial({ color: 0xd8452b, roughness: 0.5, emissive: 0x3a0d05, emissiveIntensity: 0.6 });
+  for (let i = 0; i < 6; i++) { const c = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.07, 8), food); c.rotation.z = Math.PI / 2; c.position.set((i % 3 - 1) * 0.035, 0.035, (i < 3 ? -0.022 : 0.022)); c.rotation.y = i * 0.35; g.add(c); }
+  return g;
+}
+
+return { makeFigure, applyPose, makeFood };
+})();
+
+// ---- js3d/scenario.js
+const __m_js3d_scenario_js = (() => {
+
+/* =====================================================================
+   BRIDGE — user scenario, 6 stages (scroll progress p = 0..1)
+   All coordinates are in the BRIDGE stall's local frame (metres):
+     +x runs down the street along the stall row · +z points to the customer side (street) · -z is the vendor side
+     the table (counter top) is at y = 1.05, BRIDGE stands on it at x = 0, z = -0.1
+   ===================================================================== */
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp01 = v => Math.min(1, Math.max(0, v));
+const smooth = t => t * t * (3 - 2 * t);
+const ramp = (x, a, b) => clamp01((x - a) / (b - a));
+
+const STAGE_AT = [0, 0.17, 0.34, 0.51, 0.70, 0.86, 1.0];
+const stageOf = p => { let i = 0; for (let k = 1; k < 6; k++) if (p >= STAGE_AT[k]) i = k; return i; };
+
+const TEXT = [
+  { no: '01', ko: '발견', en: 'DISCOVERY', core: '공용 AI를 통한 포장마차 탐색',
+    body: '관광객이 명동 거리를 걷다 공용 MCU AI로 주변 포장마차를 탐색합니다. 시야에 포장마차의 위치, 메뉴, 영업 상태와 혼잡 현황이 나타납니다.' },
+  { no: '02', ko: '마주함', en: 'APPROACH', core: '기본 정보 확인과 첫 눈맞춤',
+    body: '관광객이 포장마차에 도착합니다. 디스플레이에 메뉴와 가격 같은 간단한 정보가 표시되고, 정보를 확인한 뒤 상인과 눈을 맞춥니다.' },
+  { no: '03', ko: '오해', en: 'MISUNDERSTANDING', core: '언어 차이로 인한 세부 요청의 오해',
+    body: '음식 두 개 중 하나는 맵지 않게 요청합니다. 상인은 수량은 이해하지만 세부 요청을 알아듣지 못해 잠시 망설입니다.' },
+  { no: '04', ko: '이해', en: 'UNDERSTANDING', core: 'AI의 정보 지원과 사람 사이의 직접적인 확인',
+    body: '중앙 버튼을 누르면 상단 조명이 퍼플로 바뀌고, 디스플레이에 짧은 번역이 표시됩니다. 두 사람은 내용을 확인하고 눈을 맞추며 고개를 끄덕입니다.' },
+  { no: '05', ko: '전달', en: 'EXCHANGE', core: '디지털 정보가 실제 음식 전달로 이어지는 순간',
+    body: '음식 준비가 끝나면 상단 조명이 라임색으로 바뀌고 디스플레이에 준비 완료 아이콘이 나타납니다. 상인은 열린 게이트 사이로 음식을 건네고, 관광객은 미소 지으며 받습니다.' },
+  { no: '06', ko: '교감', en: 'CONNECTION', core: '기술의 개입 없이 완성되는 사람과 사람의 교감',
+    body: '상인이 손짓으로 맛있게 먹으라고 표현하고, 관광객은 고개를 끄덕이며 감사 인사를 전합니다.' }
+];
+
+/* ---- camera: [p, position, look-at, linear?] ---- */
+const CAM = [
+  [0.00, [-11, 1.65, 3.3], [-4, 1.8, 1.6], 1],
+  [0.09, [-6.6, 1.65, 3.1], [0, 1.75, 1.4], 1],
+  [0.17, [-2.7, 1.64, 2.8], [1.4, 1.5, 0.5]],
+  [0.25, [-0.7, 1.62, 2.4], [0, 1.3, -0.05]],
+  [0.31, [0.0, 1.6, 1.8], [0, 1.2, -0.1]],
+  [0.345, [0.0, 1.64, 1.95], [0, 1.5, -0.85]],
+  [0.39, [0.62, 1.72, 2.45], [0, 1.45, -0.6]],
+  [0.51, [0.8, 1.68, 2.2], [0, 1.42, -0.7]],
+  [0.54, [0.18, 1.44, 1.05], [0, 1.34, -0.1]],
+  [0.60, [0.14, 1.42, 0.95], [0, 1.31, -0.1]],
+  [0.645, [-2.5, 1.5, 0.5], [0, 1.45, 0.0]],
+  [0.70, [-2.3, 1.5, 0.4], [0, 1.45, 0.0]],
+  [0.74, [-0.95, 1.32, 1.05], [0, 1.2, -0.05]],
+  [0.80, [0.7, 1.7, -2.0], [0, 1.35, 0.5]],
+  [0.86, [0.75, 1.7, -2.05], [0, 1.35, 0.5]],
+  [0.90, [1.0, 1.66, 2.7], [0, 1.45, -0.1]],
+  [0.96, [3.0, 2.0, 6.4], [0, 1.4, 0]],
+  [1.00, [4.4, 2.7, 9.2], [0, 1.6, -1.0]]
+];
+function camAt(p, outPos, outLook) {
+  let a = CAM[0], b = CAM[0], t = 0;
+  if (p >= CAM[CAM.length - 1][0]) { a = b = CAM[CAM.length - 1]; }
+  else for (let i = 1; i < CAM.length; i++) if (p <= CAM[i][0]) { a = CAM[i - 1]; b = CAM[i]; t = (p - a[0]) / (b[0] - a[0]); if (!b[3]) t = smooth(t); break; }
+  for (let k = 0; k < 3; k++) { outPos[k] = lerp(a[1][k], b[1][k], t); outLook[k] = lerp(a[2][k], b[2][k], t); }
+}
+
+/* ---- poses: head [rx,ry,rz] · arms [rx (forward lift), rz (sideways)] · elbow [rx (bend)] · lean [rx] ---- */
+const P = (head, shL, elL, shR, elR, lean) => ({ head, shL, elL, shR, elR, lean });
+const VENDOR = [
+  [0.00, P([0.1, 0.3, 0], [-0.5, -0.1], [-0.8], [-0.9, 0.1], [-1.0], [0.12])],    // cooking
+  [0.28, P([0.1, 0.25, 0], [-0.5, -0.1], [-0.8], [-0.9, 0.1], [-1.0], [0.12])],
+  [0.345, P([0.04, 0, 0], [-0.2, -0.1], [-0.3], [-0.3, 0.15], [-0.3], [0.04])],   // looks at the customer
+  [0.40, P([0.05, 0, 0.02], [-0.3, -0.1], [-0.5], [-0.4, 0.1], [-0.5], [0.06])],
+  [0.45, P([0.05, 0, 0.3], [-0.5, -0.1], [-0.9], [-1.9, 0.15], [-1.6], [0.0])],   // hesitates, hand to chin
+  [0.52, P([0.05, 0, 0.3], [-0.5, -0.1], [-0.9], [-1.9, 0.15], [-1.6], [0.0])],
+  [0.60, P([0.0, 0, 0], [-0.9, -0.1], [-0.5], [-0.9, 0.1], [-0.5], [0.1])],       // understands
+  [0.70, P([0.0, 0, 0], [-0.8, -0.1], [-0.7], [-0.8, 0.1], [-0.9], [0.15])],
+  [0.77, P([0.0, 0, 0], [-0.9, -0.1], [-0.6], [-1.25, 0.0], [-0.2], [0.3])],      // hands the food over
+  [0.83, P([0.0, 0, 0], [-0.9, -0.1], [-0.6], [-1.3, 0.0], [-0.1], [0.32])],
+  [0.90, P([0.0, 0, -0.1], [-0.2, -0.1], [-0.3], [-1.0, 0.5], [-0.5], [0.05])],   // gestures "enjoy"
+  [1.00, P([0.0, 0, -0.12], [-0.2, -0.1], [-0.3], [-1.0, 0.5], [-0.5], [0.05])]
+];
+const TOURIST = [
+  [0.00, P([0, 0, 0], [-0.1, -0.1], [-0.2], [-0.1, 0.1], [-0.2], [0])],
+  [0.38, P([0, 0, 0], [-0.1, -0.1], [-0.2], [-0.1, 0.1], [-0.2], [0])],
+  [0.43, P([0, 0.0, 0.04], [-0.1, -0.1], [-0.2], [-1.15, 0.1], [-0.6], [0.02])],  // points: two, one not spicy
+  [0.50, P([0, 0.0, 0.04], [-0.1, -0.1], [-0.2], [-1.15, 0.1], [-0.6], [0.02])],
+  [0.545, P([0, 0, 0], [-0.1, -0.1], [-0.2], [-1.5, 0.0], [-0.1], [0.34])],       // presses the button
+  [0.585, P([0, 0, 0], [-0.1, -0.1], [-0.2], [-1.5, 0.0], [-0.1], [0.34])],
+  [0.62, P([0, 0, 0], [-0.1, -0.1], [-0.2], [-0.2, 0.1], [-0.3], [0.04])],
+  [0.72, P([0, 0, 0], [-0.1, -0.1], [-0.2], [-0.2, 0.1], [-0.3], [0.04])],
+  [0.79, P([0, 0, 0], [-1.25, -0.1], [-0.3], [-1.25, 0.1], [-0.3], [0.2])],       // receives the food
+  [0.84, P([0, 0, 0], [-1.25, -0.1], [-0.3], [-1.25, 0.1], [-0.3], [0.2])],
+  [0.89, P([0.05, 0, 0], [-0.9, 0], [-1.4], [-0.9, 0], [-1.4], [0.06])],          // food at the chest
+  [1.00, P([0.05, 0, 0], [-0.9, 0], [-1.4], [-0.9, 0], [-1.4], [0.06])]
+];
+function poseAt(keys, p) {
+  if (p <= keys[0][0]) return keys[0][1];
+  for (let i = 1; i < keys.length; i++) if (p <= keys[i][0]) {
+    const a = keys[i - 1], b = keys[i], t = smooth((p - a[0]) / (b[0] - a[0])), o = {};
+    for (const k in a[1]) o[k] = a[1][k].map((v, j) => lerp(v, b[1][k][j], t));
+    return o;
+  }
+  return keys[keys.length - 1][1];
+}
+// nod pulses (head pitch added on top of the pose)
+const nod = (p, a, b, n = 2, amp = 0.3) => (p > a && p < b) ? Math.max(0, Math.sin(((p - a) / (b - a)) * Math.PI * 2 * n)) * amp : 0;
+
+/* ---- food tray (stall-local): [p, x, y, z] ---- */
+const FOOD = [[0.59, 0.5, 1.07, -0.5], [0.70, 0.5, 1.07, -0.5], [0.76, 0.12, 1.16, -0.42], [0.80, 0.02, 1.15, 0.05], [0.84, 0.0, 1.2, 0.38], [0.89, 0.0, 1.27, 0.62], [1.0, 0.0, 1.27, 0.62]];
+function foodAt(p, out) {
+  if (p < FOOD[0][0]) return false;
+  for (let i = 1; i < FOOD.length; i++) if (p <= FOOD[i][0]) {
+    const a = FOOD[i - 1], b = FOOD[i], t = smooth((p - a[0]) / (b[0] - a[0]));
+    out[0] = lerp(a[1], b[1], t); out[1] = lerp(a[2], b[2], t); out[2] = lerp(a[3], b[3], t); return true;
+  }
+  out[0] = FOOD[FOOD.length - 1][1]; out[1] = FOOD[FOOD.length - 1][2]; out[2] = FOOD[FOOD.length - 1][3]; return true;
+}
+
+/* ---- what the BRIDGE display and top light show ---- */
+function displayState(p, pressed) {
+  if (p >= 0.86) return { key: 'idle', light: 'white', top: '', ko: '', en: '' };
+  if (p >= 0.70) return { key: 'ready', light: 'lime', top: 'READY', ko: '준비 완료', en: 'READY' };
+  if (pressed) return { key: 'tr', light: 'purple', top: 'TRANSLATION', ko: '하나는 맵지 않게', en: 'ONE NOT SPICY' };
+  if (p >= 0.17) return { key: 'menu', light: 'white', top: 'MENU', ko: '떡볶이  ₩4,000', en: 'TTEOKBOKKI  ₩4,000' };
+  return { key: 'off', light: 'white', top: '', ko: '', en: '' };
+}
+
+return { lerp, clamp01, smooth, ramp, STAGE_AT, stageOf, TEXT, CAM, camAt, VENDOR, TOURIST, poseAt, nod, FOOD, foodAt, displayState };
+})();
+
+// ---- js3d/entry.js
+const __m_js3d_entry_js = (() => {
+const { QUALITY } = __m_js3d_config_settings_js;
+const { GradeShader } = __m_js3d_fx_GradePass_js;
+const { CityLite } = __m_js3d_scenes_CityLite_js;
+const { makeFigure, applyPose, makeFood } = __m_js3d_components_Actors_js;
+const { clamp01, smooth, ramp, camAt, VENDOR, TOURIST, poseAt, nod, foodAt, displayState } = __m_js3d_scenario_js;
+/* =====================================================================
+   BRIDGE × 2030 MYEONGDONG — Three.js scenario layer (ACT 05)
+   The BRIDGE page keeps its own custom WebGL2 renderer (js/gl.js) for every other act.
+   This layer (optional: if Three.js fails to load, the page shows the storyboard images instead) renders the
+   user scenario in 3D, driven by scroll: a neon night-market street, BRIDGE on the stall table between the
+   vendor and the tourist, six stages. Captions / step rail are plain HTML handled by js/main.js.
+   ===================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+const BR3 = (window.BR3 = window.BR3 || {});
+const mouse = { x: 0, y: 0, sx: 0, sy: 0 };
+addEventListener('pointermove', e => { if (e.pointerType === 'touch') return; mouse.x = (e.clientX / innerWidth - 0.5) * 2; mouse.y = (e.clientY / innerHeight - 0.5) * 2; });
+const $ = s => document.querySelector(s);
+
+/* ---------------------------------------------------------------- BRIDGE gate */
+const COL = { white: new THREE.Color(0.9, 0.88, 1.0), purple: new THREE.Color(0.337, 0.107, 1.0), lime: new THREE.Color(0.565, 1.0, 0.042) };
+function fallbackGate(f) {
+  const holder = new THREE.Group(), dark = new THREE.MeshStandardMaterial({ color: 0x1b1c22, roughness: 0.6, metalness: 0.2 });
+  const box = (w, h, d, x, y, m = dark) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w * f, h * f, d * f), m); b.position.set(x * f, (y + 20) * f, 0); holder.add(b); return b; };
+  box(68, 6, 9.8, 0, -17); box(68, 6, 9.8, 0, 17); box(6, 40, 9.8, -31, 0); box(6, 40, 9.8, 31, 0); box(58, 7, 4.2, 0, 15.5);
+  const top = box(57, 0.6, 2, 0, 20.1, new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 2 }));
+  const bottom = box(54, 0.4, 0.4, 0, -12.2 + 24.4, new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 1 }));
+  return { holder, f, top, bottom };
+}
+function loadGate() {
+  return new Promise(res => {
+    const F = 0.6 / 68.4;
+    try {
+      const b64 = window.BRIDGE_GLB_B64 || window.BRIDGE_GLB_KEEP; if (!b64) return res(fallbackGate(F));
+      const bin = atob(b64), u8 = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+      new GLTFLoader().parse(u8.buffer, '', gltf => {
+        const root = gltf.scene, box = new THREE.Box3().setFromObject(root), size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3());
+        const s = 0.6 / Math.max(size.x, 1e-4);          // 600 mm wide
+        root.position.sub(c);
+        const wrap = new THREE.Group(); wrap.add(root); wrap.scale.setScalar(s); wrap.position.y = (size.y * s) / 2;
+        const holder = new THREE.Group(); holder.add(wrap);
+        let top = null, bottom = null;
+        root.traverse(o => {
+          if (!o.isMesh || !o.material) return;
+          if (/LED/i.test(o.material.name || '')) {
+            o.material = o.material.clone(); o.geometry.computeBoundingBox();
+            const cy = o.geometry.boundingBox.getCenter(new THREE.Vector3()).y;
+            if (cy > 16) top = o; else bottom = o;
+          }
+        });
+        if (!top || !bottom) return res(fallbackGate(F));
+        res({ holder, f: (0.01 * s), top, bottom });
+      }, () => res(fallbackGate(F)));
+    } catch (e) { res(fallbackGate(F)); }
+  });
+}
+
+/* ---------------------------------------------------------------- display (both faces) */
+function canvasTex(w, h) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  return { c, g: c.getContext('2d'), t };
+}
+function makeDisplay(gate) {
+  const f = gate.f, y = 35.5 * f, z = 2.1 * f + 0.0006, face = {};
+  const mk = (tex, w, sx, sz, ry) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w * f, 7 * f), new THREE.MeshBasicMaterial({ map: tex.t, transparent: true, toneMapped: false, depthWrite: false }));
+    m.position.set(sx * f, y, sz); m.rotation.y = ry; gate.holder.add(m); return m;
+  };
+  face.front = { txt: canvasTex(512, 180), ico: canvasTex(256, 180) };   // customer side (+z)
+  face.back = { txt: canvasTex(512, 180), ico: canvasTex(256, 180) };    // vendor side (-z)
+  mk(face.front.txt, 21.5, -17.2, z, 0); mk(face.front.ico, 21.5, 17.2, z, 0);
+  mk(face.back.txt, 21.5, 17.2, -z, Math.PI); mk(face.back.ico, 21.5, -17.2, -z, Math.PI);
+  let last = '';
+  const text = (T, top, line, color) => {
+    const g = T.g; g.clearRect(0, 0, 512, 180);
+    g.fillStyle = color; g.font = '500 26px DM Mono, monospace'; g.textAlign = 'left'; g.textBaseline = 'alphabetic'; g.fillText(top, 18, 46);
+    g.fillStyle = '#ffffff'; g.font = '700 54px Pretendard, Noto Sans KR, Arial, sans-serif';
+    let size = 54; while (g.measureText(line).width > 480 && size > 24) { size -= 3; g.font = '700 ' + size + 'px Pretendard, Noto Sans KR, Arial, sans-serif'; }
+    g.fillText(line, 18, 122); T.t.needsUpdate = true;
+  };
+  const icon = (T, key) => {
+    const g = T.g; g.clearRect(0, 0, 256, 180); g.lineWidth = 12; g.lineCap = 'round'; g.lineJoin = 'round';
+    if (key === 'ready') { g.strokeStyle = '#c5ff35'; g.beginPath(); g.arc(128, 90, 56, 0, 7); g.stroke(); g.beginPath(); g.moveTo(100, 92); g.lineTo(122, 114); g.lineTo(160, 70); g.stroke(); }
+    else if (key === 'tr') { g.strokeStyle = '#a47cff'; g.beginPath(); g.moveTo(60, 60); g.lineTo(150, 60); g.moveTo(130, 40); g.lineTo(150, 60); g.lineTo(130, 80); g.moveTo(196, 120); g.lineTo(106, 120); g.moveTo(126, 100); g.lineTo(106, 120); g.lineTo(126, 140); g.stroke(); }
+    else if (key === 'menu') { g.strokeStyle = '#f5f5f6'; g.lineWidth = 8; g.beginPath(); g.arc(128, 90, 50, 0, 7); g.stroke(); g.fillStyle = '#f5f5f6'; g.font = '700 54px Arial'; g.textAlign = 'center'; g.fillText('₩', 128, 110); }
+    T.t.needsUpdate = true;
+  };
+  return {
+    set(st) {
+      if (st.key === last) return; last = st.key;
+      const color = st.light === 'lime' ? '#c5ff35' : st.light === 'purple' ? '#a47cff' : '#9d9dab';
+      for (const [side, lang] of [['front', 'en'], ['back', 'ko']]) {
+        const F = face[side]; F.txt.g.clearRect(0, 0, 512, 180); F.ico.g.clearRect(0, 0, 256, 180);
+        if (st.key !== 'off' && st.key !== 'idle') { text(F.txt, st.top, st[lang], color); icon(F.ico, st.key); }
+        F.txt.t.needsUpdate = F.ico.t.needsUpdate = true;
+      }
+    }
+  };
+}
+
+/* ---------------------------------------------------------------- stall labels (stage 01: shared MCU AI info) */
+function labelSprite(menu, state, crowd, hero) {
+  const c = document.createElement('canvas'); c.width = 512; c.height = 230; const g = c.getContext('2d');
+  const rr = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); };
+  rr(6, 6, 500, 218, 26); g.fillStyle = 'rgba(17,18,22,0.88)'; g.fill(); g.lineWidth = hero ? 7 : 3; g.strokeStyle = hero ? '#c5ff35' : 'rgba(164,124,255,0.9)'; g.stroke();
+  g.fillStyle = '#f5f5f6'; g.font = '700 58px Pretendard, Noto Sans KR, Arial, sans-serif'; g.fillText(menu, 34, 86);
+  g.font = '500 30px DM Mono, monospace'; g.fillStyle = state === 'OPEN' ? '#c5ff35' : '#ff8aa8'; g.fillText(state === 'OPEN' ? '● 영업 중' : '○ 준비 중', 34, 140);
+  g.fillStyle = '#c9c9d4'; g.fillText('혼잡 ' + ['낮음', '보통', '높음'][crowd], 34, 188);
+  for (let i = 0; i < 3; i++) { g.fillStyle = i <= crowd ? (crowd === 2 ? '#ff6b8a' : '#a47cff') : 'rgba(245,245,246,0.18)'; g.fillRect(330 + i * 44, 168, 34, 12); }
+  if (hero) { g.fillStyle = '#c5ff35'; g.font = '700 28px DM Mono, monospace'; g.fillText('BRIDGE', 360, 70); }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthTest: false, depthWrite: false, toneMapped: false }));
+  sp.scale.set(hero ? 2.3 : 1.9, (hero ? 2.3 : 1.9) * 230 / 512, 1); sp.renderOrder = 20; return sp;
+}
+
+/* ---------------------------------------------------------------- the layer */
+class ScenarioLayer {
+  constructor(sec, view) {
+    this.sec = sec; this.view = view; this.vis = false; this.ps = 0; this.pressed = false; this.ready = false;
+    const canvas = this.canvas = document.createElement('canvas'); canvas.className = 'sc-canvas'; canvas.setAttribute('aria-hidden', 'true');
+    view.appendChild(canvas);
+    const w = Math.max(2, view.clientWidth), h = Math.max(2, view.clientHeight);
+    const r = this.renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance', stencil: false });
+    r.setPixelRatio(Math.min(devicePixelRatio || 1, QUALITY.mobile ? 1.25 : 1.5)); r.setSize(w, h, false);
+    r.outputColorSpace = THREE.SRGBColorSpace; r.toneMapping = THREE.ACESFilmicToneMapping; r.toneMappingExposure = 0.9;
+    this.camera = new THREE.PerspectiveCamera(54, w / h, 0.05, 400);
+    const city = this.city = new CityLite(r);
+    const a = city.anchor;
+    const H = this.H = new THREE.Group(); H.position.set(a.x, 0, a.z); H.rotation.y = a.ry; city.scene.add(H); H.updateMatrixWorld(true);
+
+    // vendor (behind the table) and tourist (street side)
+    this.vendor = makeFigure({ skin: 0xc99a78, top: 0x3a3550, bottom: 0x23232b, hair: 0x1a1416, extra: 0xf2f0ea, apron: true, cap: true });
+    this.vendor.root.position.set(0, 0, -0.85); H.add(this.vendor.root);
+    this.tourist = makeFigure({ skin: 0xdcb89b, top: 0xcfc6ff, bottom: 0x2a2b36, hair: 0x2b2230, extra: 0x25262e, pack: true });
+    this.tourist.root.position.set(-0.12, 0, 0.95); this.tourist.root.rotation.y = Math.PI; H.add(this.tourist.root);
+    this.tourist.mats.forEach(m => { m.transparent = true; });
+    this.food = makeFood(); this.food.visible = false; H.add(this.food);
+
+    // studio-style light on the table: soft key, purple rim, and a glow that follows the top-light colour
+    const key = new THREE.SpotLight(0xeeeaff, 9, 8, 0.55, 0.9, 1.4); key.position.set(1.3, 2.7, 2.0); key.target.position.set(0, 1.15, -0.1); H.add(key, key.target);
+    const rim = new THREE.SpotLight(0x7628f5, 12, 7, 0.65, 0.9, 1.5); rim.position.set(-1.4, 2.3, -1.7); rim.target.position.set(0, 1.2, -0.1); H.add(rim, rim.target);
+    const rim2 = new THREE.SpotLight(0x7a6bff, 7, 7, 0.65, 0.9, 1.5); rim2.position.set(1.4, 2.3, -1.7); rim2.target.position.set(0, 1.2, 0.2); H.add(rim2, rim2.target);
+    this.glow = new THREE.PointLight(0xffffff, 0.5, 2.6, 2); this.glow.position.set(0, 1.62, 0.1); H.add(this.glow);
+    this.lightCol = COL.white.clone();
+
+    // stall labels
+    this.labels = [];
+    const MENU = ['떡볶이', '닭꼬치', '호떡', '어묵', '회오리감자', '붕어빵', '순대', '튀김'];
+    city.stallPos.forEach((s, i) => {
+      const sp = labelSprite(s.hero ? '떡볶이' : MENU[(i * 3 + 1) % MENU.length], i % 7 === 4 ? 'PREP' : 'OPEN', s.hero ? 0 : (i * 5) % 3, s.hero);
+      sp.position.set(s.x, 3.5, s.z); city.scene.add(sp); this.labels.push(sp);
+    });
+
+    // post: bloom + the site's black/purple grade
+    const rt = new THREE.WebGLRenderTarget(w, h, { type: THREE.HalfFloatType, samples: QUALITY.mobile ? 0 : 4 });
+    const comp = this.composer = new EffectComposer(r, rt); comp.setPixelRatio(r.getPixelRatio()); comp.setSize(w, h);
+    comp.addPass(new RenderPass(city.scene, this.camera));
+    this.bloom = new UnrealBloomPass(new THREE.Vector2(w, h), 0.32, 0.6, 0.92); comp.addPass(this.bloom);
+    this.grade = new ShaderPass(GradeShader); this.grade.uniforms.uSat.value = 0.95; this.grade.uniforms.uVignette.value = 0.9; comp.addPass(this.grade);
+    comp.addPass(new OutputPass());
+
+    this.pos = [0, 0, 0]; this.look = [0, 0, 0]; this.v = new THREE.Vector3();
+    this.press = $('#scPress'); this.disp = $('#scDisp');
+    if (this.press) this.press.addEventListener('click', () => { this.pressed = true; });
+    new ResizeObserver(() => this.resize()).observe(view);
+    new IntersectionObserver(es => es.forEach(e => { this.vis = e.isIntersecting; }), { rootMargin: '10% 0px' }).observe(sec);
+    loadGate().then(g => {
+      this.gate = g; g.holder.position.set(0, 1.05, -0.1); this.H.add(g.holder);
+      this.display = makeDisplay(g); this.display.set({ key: 'off' }); this.ready = true; view.classList.add('on3d');
+    });
+  }
+  resize() {
+    const w = Math.max(2, this.view.clientWidth), h = Math.max(2, this.view.clientHeight);
+    this.renderer.setSize(w, h, false); this.composer.setSize(w, h); this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
+  }
+  frame(dt, t) {
+    if (!this.ready || !this.vis) return;
+    const r = this.sec.getBoundingClientRect(), vh = innerHeight, len = Math.max(1, this.sec.offsetHeight - vh);
+    const q = clamp01(-r.top / len);
+    this.ps += (q - this.ps) * (1 - Math.exp(-dt * 6)); if (Math.abs(q - this.ps) < 0.0003) this.ps = q;
+    const p = this.ps;
+
+    // camera (stall-local → world) + a little mouse parallax
+    camAt(p, this.pos, this.look);
+    const cam = this.camera, v = this.v;
+    this.H.localToWorld(v.set(this.pos[0], this.pos[1], this.pos[2])); cam.position.copy(v);
+    cam.position.x += mouse.sx * 0.05; cam.position.y -= mouse.sy * 0.03;
+    this.H.localToWorld(v.set(this.look[0], this.look[1], this.look[2])); cam.lookAt(v);
+
+    // actors
+    const vp = poseAt(VENDOR, p), tp = poseAt(TOURIST, p);
+    const cook = 1 - ramp(p, 0.25, 0.345), hes = ramp(p, 0.40, 0.45) * (1 - ramp(p, 0.52, 0.56)), enj = ramp(p, 0.90, 0.93);
+    const nv = nod(p, 0.62, 0.69, 2, 0.28), nt = nod(p, 0.62, 0.69, 2, 0.22) + nod(p, 0.91, 0.99, 2, 0.34);
+    applyPose(this.vendor, {
+      head: [vp.head[0] + nv, vp.head[1] + Math.sin(t * 3.4) * 0.22 * hes + Math.sin(t * 1.1) * 0.1 * cook, vp.head[2]],
+      shL: vp.shL, elL: vp.elL,
+      shR: [vp.shR[0] + Math.sin(t * 5 + 1) * 0.1 * cook, vp.shR[1] + Math.sin(t * 6) * 0.15 * enj],
+      elR: [vp.elR[0] + Math.sin(t * 5) * 0.28 * cook + Math.sin(t * 6) * 0.12 * enj], lean: vp.lean
+    });
+    applyPose(this.tourist, { head: [tp.head[0] + nt, tp.head[1], tp.head[2]], shL: tp.shL, elL: tp.elL, shR: tp.shR, elR: tp.elR, lean: tp.lean });
+    this.vendor.body.position.y = 0.88 + Math.sin(t * 1.6) * 0.004; this.tourist.body.position.y = 0.88 + Math.sin(t * 1.5 + 1) * 0.004;
+    const op = smooth(ramp(p, 0.34, 0.40));
+    this.tourist.mats.forEach(m => { m.opacity = op; }); this.tourist.root.visible = op > 0.01;
+    const fp = this.fpos || (this.fpos = [0, 0, 0]);
+    if (foodAt(p, fp)) { this.food.visible = true; this.food.position.set(fp[0], fp[1], fp[2]); } else this.food.visible = false;
+
+    // BRIDGE: top light + display follow the stage
+    if (p < 0.5) this.pressed = false;
+    const eff = this.pressed || p >= 0.60, st = displayState(p, eff);
+    this.display.set(st);
+    const target = COL[st.light];
+    this.lightCol.lerp(target, 1 - Math.exp(-dt * 7));
+    const g = this.gate, tm = g.top.material, bm = g.bottom.material;
+    tm.emissive.copy(this.lightCol); tm.color.copy(this.lightCol).lerp(COL.white, 0.5); tm.emissiveIntensity = 1.3; tm.toneMapped = false;
+    bm.emissive.copy(this.lightCol).multiplyScalar(0.55); bm.emissiveIntensity = 0.7;
+    this.glow.color.copy(this.lightCol); this.glow.intensity += ((st.light === 'white' ? 0.5 : 1.6) - this.glow.intensity) * Math.min(1, dt * 5);
+
+    // press hotspot over the centre button (customer side), stage 04 until pressed
+    const showPress = !eff && p > 0.515 && p < 0.60;
+    if (this.press) {
+      this.press.classList.toggle('show', showPress);
+      if (showPress) {
+        g.holder.localToWorld(v.set(0, 35.1 * g.f, 2.4 * g.f)); v.project(cam);
+        this.press.style.left = ((v.x * 0.5 + 0.5) * this.view.clientWidth).toFixed(1) + 'px'; this.press.style.top = ((-v.y * 0.5 + 0.5) * this.view.clientHeight).toFixed(1) + 'px';
+      }
+    }
+    // HTML mirror of the display (legible at any size)
+    if (this.disp) {
+      const on = st.key === 'menu' ? p < 0.51 : (st.key === 'tr' || st.key === 'ready');
+      this.disp.classList.toggle('show', on); this.disp.dataset.k = st.light;
+      if (on && this.disp._k !== st.key) {
+        this.disp._k = st.key;
+        this.disp.innerHTML = '<small>' + st.top + '</small><b>' + st.ko + '</b><em>' + st.en + '</em>';
+      }
+    }
+    // stage-01 labels
+    const la = 1 - ramp(p, 0.12, 0.19);
+    for (const sp of this.labels) {
+      const d = sp.position.distanceTo(cam.position), o = la * (1 - ramp(d, 14, 30));
+      sp.material.opacity = o; sp.visible = o > 0.02;
+    }
+    this.city.update(dt, cam.position);
+    this.grade.uniforms.uTime.value += dt;
+    this.composer.render(dt);
+  }
+}
+
+/* ---------------------------------------------------------------- boot */
+function boot() {
+  if (/[?&]no3d/.test(location.search)) return;
+  let layer = null;
+  try { const sec = $('#act5'), view = $('#scView'); if (sec && view) layer = BR3.layer = new ScenarioLayer(sec, view); } catch (e) { console.warn('[BR3] scenario layer off', e); layer = null; }
+  if (!layer) return;
+  let last = performance.now();
+  (function loop(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    mouse.sx += (mouse.x - mouse.sx) * (1 - Math.exp(-dt * 6)); mouse.sy += (mouse.y - mouse.sy) * (1 - Math.exp(-dt * 6));
+    try { if (layer) layer.frame(dt, now / 1000); } catch (e) { console.warn('[BR3] scenario error', e); layer = null; return; }
+    requestAnimationFrame(loop);
+  })(last);
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+
+return {  };
+})();
+
+</script>
+<!--BR3:end-->
+</body>
+</html>
