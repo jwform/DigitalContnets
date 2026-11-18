@@ -1,0 +1,1 @@
+V6.4: Pointer-following map parallax added (bounded ~22px horizontal /14px vertical). Hit-testing compensated for pointer offset. Existing intro and site sections preserved.

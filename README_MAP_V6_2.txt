@@ -1,0 +1,1 @@
+Based on V6.1. Map optimizations: cap map canvas DPR at 1.25, cap redraw ~30fps with immediate interaction updates, avoid fluid WebGL draw outside world section. Intro videos and transitions unchanged.

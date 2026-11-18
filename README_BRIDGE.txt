@@ -1,0 +1,1 @@
+Main: index.html. On 3D map select 포장마차 거리 > 제품 자세히 보기 to open bridge/index.html. On BRIDGE end screen, click BACK TO MYEONGDONG MAP to return to index.html?return=street#explore; intro is skipped and street-food zone restored. Other links preserved. Serve via local HTTP server or GitHub Pages for 3D models.
